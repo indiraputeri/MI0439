@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="edm2js_files/libs/clipboard/clipboard.min.js"></script>
+<script src="edm2js_files/libs/quarto-html/tabby.min.js"></script>
+<script src="edm2js_files/libs/quarto-html/popper.min.js"></script>
+<script src="edm2js_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="edm2js_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="edm2js_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="edm2js_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
+
+  <meta name="author" content="Dr.&nbsp;Indira Puteri Kinasih">
+  <title>Data Pendidikan: Jenis &amp; Preprocessing</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="edm2js_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="edm2js_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="edm2js_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+  <link href="edm2js_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="edm2js_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="edm2js_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="edm2js_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Data Pendidikan: Jenis &amp; Preprocessing</h1>
+  <p class="subtitle">Data Mining (MI0439)</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr.&nbsp;Indira Puteri Kinasih
+</div>
+</div>
+</div>
+
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#/data-pendidikan" id="/toc-data-pendidikan">Data Pendidikan</a></li>
+<li><a href="#/preprocessing-dalam-edm" id="/toc-preprocessing-dalam-edm">Preprocessing dalam EDM</a></li>
+<li><a href="#/contoh-kasus-sederhana" id="/toc-contoh-kasus-sederhana">Contoh kasus sederhana</a></li>
+<li><a href="#/diskusi" id="/toc-diskusi">Diskusi</a></li>
+<li><a href="#/inti-pembelajaran" id="/toc-inti-pembelajaran">Inti Pembelajaran</a></li>
+</ul>
+</nav>
+</section>
+<section id="capaian-pembelajaran" class="slide level2">
+<h2>Capaian Pembelajaran</h2>
+<p>Setelah mengikuti pertemuan ini, mahasiswa diharapkan mampu:</p>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>mengidentifikasi berbagai jenis data dalam konteks pendidikan;</li>
+<li>membedakan data numerik dan kategorik;</li>
+<li>menjelaskan karakteristik data yang baik untuk analisis;</li>
+<li>mengidentifikasi masalah kualitas data;</li>
+<li>menjelaskan konsep <em>data preprocessing</em>;</li>
+<li>melakukan <em>data cleaning</em> sederhana;</li>
+<li>menjelaskan konsep <em>missing value</em> dan cara menanganinya;</li>
+<li>memahami pentingnya preprocessing sebelum menerapkan metode data mining.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="mengapa-data-perlu-dipersiapkan" class="slide level2">
+<h2>Mengapa Data Perlu Dipersiapkan?</h2>
+<ul>
+<li><p>Pada pertemuan sebelumnya telah dibahas bahwa <strong>Educational Data Mining (EDM)</strong> menggunakan data pendidikan untuk menemukan pola yang berguna.</p></li>
+<li><p>Namun, data yang tersedia di dunia nyata biasanya <strong>tidak langsung siap dianalisis</strong>.</p></li>
+</ul>
+</section>
+<section id="contoh" class="slide level2">
+<h2>Contoh</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Siswa</th>
+<th style="text-align: right;">Kehadiran</th>
+<th style="text-align: right;">Nilai Kuis</th>
+<th style="text-align: right;">Akses LMS</th>
+<th style="text-align: left;">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ahmad</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">Aktif</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Budi</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">Aktif</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Citra</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">Aktif</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Deni</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;">Aktif</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Evi</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Tidak Aktif</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Perhatikan beberapa masalah:</p>
+<ul>
+<li>terdapat nilai yang kosong;</li>
+<li>kehadiran <strong>105%</strong> tidak masuk akal;</li>
+<li>terdapat perbedaan karakteristik siswa;</li>
+<li>beberapa variabel memiliki skala berbeda;</li>
+<li>data belum tentu memiliki format yang sesuai untuk algoritma.</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="karena-itu" class="slide level2">
+<h2>Karena itu…</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<blockquote>
+<p>Karena itu, sebelum melakukan data mining, kita perlu melakukan <strong>data preprocessing</strong>. <strong>Garbage in, garbage out.</strong> Jika data yang digunakan buruk, hasil analisis juga berpotensi buruk.</p>
+</blockquote>
+</div>
+</div>
+</div>
+</section>
+<section>
+<section id="data-pendidikan" class="title-slide slide level1 center">
+<h1>Data Pendidikan</h1>
+<p>Data pendidikan adalah data yang dikumpulkan dari proses, aktivitas, dan lingkungan pendidikan.</p>
+<p>Contohnya:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 71%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Jenis Data</th>
+<th style="text-align: left;">Contoh</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Data akademik</strong></td>
+<td style="text-align: left;">Nilai tugas, kuis, UTS, UAS, nilai mata pelajaran, nilai remedial</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Data kehadiran</strong></td>
+<td style="text-align: left;">Kehadiran, ketidakhadiran, keterlambatan</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Data aktivitas belajar</strong></td>
+<td style="text-align: left;">Materi yang dibaca, video ditonton, latihan dikerjakan, waktu belajar</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Data interaksi</strong></td>
+<td style="text-align: left;">Diskusi, komentar, forum, interaksi dengan guru, aktivitas kolaborasi</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Data karakteristik siswa</strong></td>
+<td style="text-align: left;">Kelas, usia, jenis kelamin, karakteristik akademik</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Data sekolah</strong></td>
+<td style="text-align: left;">Kelas, guru, fasilitas, jumlah siswa, karakteristik sekolah</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Data digital</strong></td>
+<td style="text-align: left;">Login LMS, klik materi, durasi akses, aktivitas kuis</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="struktur-data" class="slide level2">
+<h2>Struktur Data</h2>
+<p>Data biasanya disusun dalam bentuk <strong>baris dan kolom</strong>.</p>
+<p>Misalnya:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Siswa</th>
+<th style="text-align: right;">Kehadiran</th>
+<th style="text-align: right;">Nilai Kuis</th>
+<th style="text-align: right;">Nilai UTS</th>
+<th style="text-align: right;">Akses LMS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ahmad</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Budi</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Citra</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Deni</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Evi</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">5</td>
+</tr>
+</tbody>
+</table>
+<p>Dalam data mining:</p>
+<ul>
+<li><strong>baris</strong> biasanya merepresentasikan <em>observasi</em>;</li>
+<li><strong>kolom</strong> merepresentasikan <em>variabel</em> atau <em>atribut</em>.</li>
+</ul>
+<p>Pada contoh tersebut:</p>
+<blockquote>
+<p>Satu baris = satu siswa</p>
+</blockquote>
+<p>sedangkan:</p>
+<blockquote>
+<p>Satu kolom = satu karakteristik siswa.</p>
+</blockquote>
+</section>
+<section id="variabel-numerik" class="slide level2">
+<h2>Variabel Numerik</h2>
+<p>Variabel numerik memiliki nilai berupa angka yang dapat digunakan dalam operasi matematika.</p>
+<p>Contoh:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variabel</th>
+<th style="text-align: left;">Contoh</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Usia</td>
+<td style="text-align: left;">11 tahun</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nilai</td>
+<td style="text-align: left;">85</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kehadiran</td>
+<td style="text-align: left;">95%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Jumlah tugas</td>
+<td style="text-align: left;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Durasi belajar</td>
+<td style="text-align: left;">45 menit</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Jumlah login</td>
+<td style="text-align: left;">20</td>
+</tr>
+</tbody>
+</table>
+<p>Variabel numerik dapat dibedakan menjadi:</p>
+<p><strong>Diskrit</strong></p>
+<p>Nilainya biasanya berupa hitungan.</p>
+<p>Contoh:</p>
+<ul>
+<li>jumlah tugas;</li>
+<li>jumlah login;</li>
+<li>jumlah ketidakhadiran.</li>
+</ul>
+<p><strong>Kontinu</strong></p>
+<p>Nilainya dapat berada pada suatu rentang.</p>
+<p>Contoh:</p>
+<ul>
+<li>waktu belajar;</li>
+<li>tinggi badan;</li>
+<li>berat badan.</li>
+</ul>
+</section>
+<section id="variabel-kategorik" class="slide level2">
+<h2>Variabel Kategorik</h2>
+<p>Variabel kategorik menunjukkan kelompok atau kategori.</p>
+<p>Contoh:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variabel</th>
+<th style="text-align: left;">Kategori</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jenis kelamin</td>
+<td style="text-align: left;">Laki-laki, Perempuan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kelas</td>
+<td style="text-align: left;">IV, V, VI</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Status siswa</td>
+<td style="text-align: left;">Aktif, Tidak Aktif</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tingkat risiko</td>
+<td style="text-align: left;">Rendah, Sedang, Tinggi</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Jenis sekolah</td>
+<td style="text-align: left;">MI, SD</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Metode belajar</td>
+<td style="text-align: left;">Tatap muka, Daring, Blended</td>
+</tr>
+</tbody>
+</table>
+<p>Data kategorik tidak selalu dapat diperlakukan sebagai angka.</p>
+<p>Misalnya:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="" aria-label="1"></a>Laki-laki = 1</span>
+<span id="cb1-2"><a href="" aria-label="2"></a>Perempuan = 2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Angka 1 dan 2 tersebut hanya merupakan <strong>kode</strong>, bukan berarti perempuan memiliki nilai “lebih tinggi” daripada laki-laki.</p>
+</section>
+<section id="skala-pengukuran-data" class="slide level2">
+<h2>Skala pengukuran data</h2>
+<p>Jenis data juga dapat dilihat berdasarkan skala pengukuran.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 34%">
+<col style="width: 49%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Skala</th>
+<th style="text-align: left;">Karakteristik</th>
+<th style="text-align: left;">Contoh Pendidikan</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Nominal</strong></td>
+<td style="text-align: left;">Kategori tanpa urutan</td>
+<td style="text-align: left;">Jenis kelamin, jenis sekolah</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Ordinal</strong></td>
+<td style="text-align: left;">Kategori memiliki urutan</td>
+<td style="text-align: left;">Rendah, sedang, tinggi</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Interval</strong></td>
+<td style="text-align: left;">Jarak antarnilai bermakna</td>
+<td style="text-align: left;">Skor tertentu yang berskala interval</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Rasio</strong></td>
+<td style="text-align: left;">Memiliki nol absolut</td>
+<td style="text-align: left;">Usia, jumlah tugas, waktu belajar</td>
+</tr>
+</tbody>
+</table>
+<p>Pemahaman mengenai skala pengukuran penting karena akan memengaruhi <strong>cara data dianalisis</strong>.</p>
+</section>
+<section id="masalah-kualitas-data" class="slide level2">
+<h2>Masalah Kualitas Data</h2>
+<p>Data pendidikan dapat memiliki berbagai masalah.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 69%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Masalah</th>
+<th style="text-align: left;">Contoh</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Missing value</strong></td>
+<td style="text-align: left;">Nilai kuis kosong</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Duplikasi</strong></td>
+<td style="text-align: left;">Data siswa tercatat dua kali</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Inconsistent value</strong></td>
+<td style="text-align: left;">“Laki-laki”, “L”, “Pria”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Invalid value</strong></td>
+<td style="text-align: left;">Kehadiran 105%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Typo</strong></td>
+<td style="text-align: left;">“Matemtika”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Format berbeda</strong></td>
+<td style="text-align: left;">12/08/2026 dan 2026-08-12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Outlier</strong></td>
+<td style="text-align: left;">Nilai yang sangat berbeda dari sebagian besar data</td>
+</tr>
+</tbody>
+</table>
+<p>Masalah-masalah tersebut perlu diperiksa sebelum data digunakan untuk pemodelan.</p>
+</section></section>
+<section>
+<section id="preprocessing-dalam-edm" class="title-slide slide level1 center">
+<h1>Preprocessing dalam EDM</h1>
+<p>Preprocessing adalah tahap menyiapkan data sebelum digunakan dalam analisis atau algoritma data mining. Data pendidikan yang diperoleh dari sekolah, LMS, kuesioner, atau sistem akademik sering kali belum siap digunakan karena mengandung data ganda, nilai yang tidak valid, format yang tidak konsisten, atau data yang hilang.</p>
+<p>Tujuan preprocessing adalah menghasilkan data yang:</p>
+<ul>
+<li><strong>bersih</strong> — kesalahan dan duplikasi ditangani;</li>
+<li><strong>konsisten</strong> — format dan kategori memiliki bentuk yang seragam;</li>
+<li><strong>lengkap</strong> — missing value ditangani dengan cara yang sesuai;</li>
+<li><strong>valid</strong> — nilai berada pada rentang atau kategori yang seharusnya;</li>
+<li><strong>siap dianalisis</strong> — struktur data sesuai dengan metode yang akan digunakan.</li>
+</ul>
+<p>Secara sederhana, alurnya dapat digambarkan sebagai:</p>
+<p><strong>Data mentah → Identifikasi masalah → Cleaning → Penanganan missing value → Transformasi → Data siap dianalisis</strong></p>
+</section>
+<section id="data-cleaning" class="slide level2">
+<h2>Data Cleaning</h2>
+<p>Data cleaning merupakan proses menemukan dan menangani masalah pada data. Dalam EDM, beberapa masalah yang umum ditemukan adalah:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Masalah</th>
+<th style="text-align: left;">Contoh</th>
+<th style="text-align: left;">Penanganan</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Duplikasi</td>
+<td style="text-align: left;">Siswa tercatat dua kali</td>
+<td style="text-align: left;">Identifikasi dan hapus duplikasi</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Invalid value</td>
+<td style="text-align: left;">Nilai ujian = 150</td>
+<td style="text-align: left;">Periksa dan koreksi/hapus</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Format tidak konsisten</td>
+<td style="text-align: left;"><code>L</code>, <code>Laki-laki</code>, <code>laki laki</code></td>
+<td style="text-align: left;">Samakan kategori</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Typo</td>
+<td style="text-align: left;"><code>Perempuan</code>, <code>Perempaun</code></td>
+<td style="text-align: left;">Koreksi kategori</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Missing value</td>
+<td style="text-align: left;">Nilai kuis kosong</td>
+<td style="text-align: left;">Analisis dan tentukan metode penanganan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outlier</td>
+<td style="text-align: left;">Waktu belajar = 999 jam</td>
+<td style="text-align: left;">Periksa kewajaran dan sumber data</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="mengapa-preprocessing-penting" class="slide level2">
+<h2>Mengapa Preprocessing Penting?</h2>
+<p>Bayangkan kita ingin menggunakan data siswa untuk memprediksi apakah seorang siswa berisiko mengalami kesulitan belajar.</p>
+<p>Jika data yang digunakan masih mengandung nilai ujian yang salah, kehadiran yang tidak konsisten, atau missing value yang ditangani secara sembarangan, maka hasil model dapat menjadi tidak akurat.</p>
+<p>Dengan demikian:</p>
+<blockquote>
+<p><strong>Kualitas hasil data mining sangat dipengaruhi oleh kualitas data yang digunakan.</strong></p>
+</blockquote>
+<p>Preprocessing juga harus dilakukan dengan hati-hati. Tidak semua data yang aneh harus langsung dihapus. Data yang tampak tidak biasa perlu diperiksa terlebih dahulu untuk menentukan apakah merupakan kesalahan pencatatan, kejadian yang memang terjadi, atau informasi yang justru penting.</p>
+</section>
+<section id="tahapan-preprocessing-dalam-edm" class="slide level2">
+<h2>Tahapan Preprocessing dalam EDM</h2>
+<p>Preprocessing dapat dilakukan melalui beberapa tahap:</p>
+<ol type="1">
+<li><p><strong>Memahami data</strong><br>
+Mengenali variabel, tipe data, jumlah observasi, dan sumber data.</p></li>
+<li><p><strong>Memeriksa kualitas data</strong><br>
+Mencari duplikasi, nilai tidak valid, format tidak konsisten, dan missing value.</p></li>
+<li><p><strong>Melakukan data cleaning</strong><br>
+Memperbaiki atau menangani masalah yang ditemukan.</p></li>
+<li><p><strong>Menangani missing value</strong><br>
+Menentukan apakah data dihapus, diimputasi, atau dipertahankan sebagai informasi.</p></li>
+<li><p><strong>Melakukan transformasi bila diperlukan</strong><br>
+Misalnya mengubah kategori menjadi kode numerik atau mengubah format data agar sesuai dengan analisis.</p></li>
+<li><p><strong>Memeriksa kembali data</strong><br>
+Memastikan data setelah preprocessing tetap masuk akal dan sesuai dengan tujuan analisis.</p></li>
+</ol>
+</section>
+<section id="prinsip-penting" class="slide level2">
+<h2>Prinsip Penting</h2>
+<p>Preprocessing bukan berarti membuat data menjadi “sempurna”, tetapi membuat data <strong>layak digunakan untuk tujuan analisis tertentu</strong>.</p>
+<p>Metode preprocessing yang digunakan juga bergantung pada jenis data dan tujuan data mining.</p>
+</section>
+<section id="data-cleaning-1" class="slide level2">
+<h2><em>Data Cleaning</em></h2>
+<p><strong>Data cleaning</strong> adalah proses mendeteksi dan memperbaiki masalah dalam data.</p>
+<p>Tujuannya adalah menghasilkan data yang:</p>
+<ul>
+<li>lebih akurat;</li>
+<li>konsisten;</li>
+<li>lengkap;</li>
+<li>relevan;</li>
+<li>dan siap digunakan untuk analisis.</li>
+</ul>
+<p>Contoh:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Sebelum Cleaning</th>
+<th style="text-align: left;">Setelah Cleaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">L</td>
+<td style="text-align: left;">Laki-laki</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pria</td>
+<td style="text-align: left;">Laki-laki</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">P</td>
+<td style="text-align: left;">Perempuan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Perempuan</td>
+<td style="text-align: left;">Perempuan</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Matemtika</td>
+<td style="text-align: left;">Matematika</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Matematika</td>
+<td style="text-align: left;">Matematika</td>
+</tr>
+</tbody>
+</table>
+<p>Data yang memiliki kategori berbeda tetapi memiliki makna yang sama perlu diseragamkan.</p>
+</section>
+<section id="duplikasi-data" class="slide level2">
+<h2>Duplikasi Data</h2>
+<p>Misalkan terdapat:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">ID</th>
+<th style="text-align: left;">Nama</th>
+<th style="text-align: left;">Kelas</th>
+<th style="text-align: right;">Nilai</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">001</td>
+<td style="text-align: left;">Ahmad</td>
+<td style="text-align: left;">V</td>
+<td style="text-align: right;">80</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">002</td>
+<td style="text-align: left;">Budi</td>
+<td style="text-align: left;">V</td>
+<td style="text-align: right;">75</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">003</td>
+<td style="text-align: left;">Ahmad</td>
+<td style="text-align: left;">V</td>
+<td style="text-align: right;">80</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">004</td>
+<td style="text-align: left;">Citra</td>
+<td style="text-align: left;">V</td>
+<td style="text-align: right;">90</td>
+</tr>
+</tbody>
+</table>
+<p>Apakah Ahmad merupakan dua siswa?</p>
+<p>Belum tentu.</p>
+<p>Kemungkinan data Ahmad tercatat dua kali.</p>
+<p>Jika memang merupakan duplikasi, salah satu baris perlu dihapus.</p>
+<blockquote>
+<p><strong>Duplikasi dapat menyebabkan jumlah observasi menjadi tidak benar dan memengaruhi hasil analisis.</strong></p>
+</blockquote>
+</section>
+<section id="invalid-value" class="slide level2">
+<h2>Invalid Value</h2>
+<p>Data juga dapat mengandung nilai yang secara logika tidak mungkin.</p>
+<p>Contoh:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variabel</th>
+<th style="text-align: right;">Nilai</th>
+<th style="text-align: left;">Masalah</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Kehadiran</td>
+<td style="text-align: right;">105%</td>
+<td style="text-align: left;">Tidak mungkin</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Usia</td>
+<td style="text-align: right;">250 tahun</td>
+<td style="text-align: left;">Tidak masuk akal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nilai</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: left;">Jika skala maksimum 100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Jumlah tugas</td>
+<td style="text-align: right;">-5</td>
+<td style="text-align: left;">Tidak mungkin</td>
+</tr>
+</tbody>
+</table>
+<p>Nilai seperti ini perlu diperiksa.</p>
+<p>Namun, jangan langsung menghapusnya.</p>
+<p>Pertama-tama tanyakan:</p>
+<blockquote>
+<p><strong>Apakah nilai tersebut benar-benar salah atau ada penjelasan lain?</strong></p>
+</blockquote>
+</section>
+<section id="missing-value" class="slide level2">
+<h2>Missing Value</h2>
+<p><strong>Missing value</strong> adalah kondisi ketika nilai suatu variabel tidak tersedia untuk suatu observasi.</p>
+<p>Contoh:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Siswa</th>
+<th style="text-align: right;">Kehadiran</th>
+<th style="text-align: right;">Nilai Kuis</th>
+<th style="text-align: right;">Nilai UAS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ahmad</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">88</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Budi</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">82</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Citra</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;"><strong>NA</strong></td>
+<td style="text-align: right;">60</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Deni</td>
+<td style="text-align: right;"><strong>NA</strong></td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">70</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Evi</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;"><strong>NA</strong></td>
+</tr>
+</tbody>
+</table>
+<p><code>NA</code> dapat menunjukkan bahwa data tidak tersedia.</p>
+<p>Missing value merupakan masalah penting karena banyak algoritma data mining tidak dapat bekerja langsung dengan data yang kosong.</p>
+<h3 id="mengapa-missing-value-terjadi">Mengapa Missing Value Terjadi?</h3>
+<p>Missing value dapat terjadi karena berbagai alasan.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 61%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Penyebab</th>
+<th style="text-align: left;">Contoh</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Data tidak dikumpulkan</td>
+<td style="text-align: left;">Nilai kuis tidak tersedia</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Siswa tidak mengikuti ujian</td>
+<td style="text-align: left;">Nilai UTS kosong</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kesalahan input</td>
+<td style="text-align: left;">Data tidak tersimpan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Responden tidak menjawab</td>
+<td style="text-align: left;">Kuesioner kosong</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Masalah sistem</td>
+<td style="text-align: left;">Data LMS gagal direkam</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tidak relevan</td>
+<td style="text-align: left;">Variabel tertentu tidak berlaku untuk siswa</td>
+</tr>
+</tbody>
+</table>
+<p>Karena penyebabnya berbeda, <strong>cara menangani missing value juga tidak selalu sama</strong>.</p>
+<h3 id="cara-menangani-missing-value">Cara Menangani Missing Value</h3>
+<p>Beberapa pendekatan yang umum digunakan:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 69%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Pendekatan</th>
+<th style="text-align: left;">Penjelasan</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Menghapus observasi</strong></td>
+<td style="text-align: left;">Baris dengan missing value dihapus</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Menghapus variabel</strong></td>
+<td style="text-align: left;">Variabel dengan terlalu banyak missing dihapus</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Mean imputation</strong></td>
+<td style="text-align: left;">Missing diganti dengan rata-rata</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Median imputation</strong></td>
+<td style="text-align: left;">Missing diganti dengan median</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Mode imputation</strong></td>
+<td style="text-align: left;">Missing kategorik diganti dengan modus</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Model-based imputation</strong></td>
+<td style="text-align: left;">Nilai diperkirakan menggunakan model</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Multiple imputation</strong></td>
+<td style="text-align: left;">Missing diimputasi menggunakan beberapa nilai yang mungkin</td>
+</tr>
+</tbody>
+</table>
+<p>Tidak ada satu metode yang selalu paling baik.</p>
+<p>Pemilihan metode bergantung pada:</p>
+<ul>
+<li>jumlah missing value;</li>
+<li>pola missing;</li>
+<li>jenis variabel;</li>
+<li>tujuan analisis;</li>
+<li>karakteristik data.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="contoh-mean-imputation">Contoh Mean Imputation</h3>
+<p>Misalkan nilai kuis:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="" aria-label="1"></a>80</span>
+<span id="cb2-2"><a href="" aria-label="2"></a>70</span>
+<span id="cb2-3"><a href="" aria-label="3"></a>90</span>
+<span id="cb2-4"><a href="" aria-label="4"></a>NA</span>
+<span id="cb2-5"><a href="" aria-label="5"></a>60</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Rata-rata nilai yang tersedia:</p>
+<p><span class="math display">
+\bar{x} = \frac{80+70+90+60}{4}=75
+</span></p>
+<p>Maka:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="" aria-label="1"></a>80</span>
+<span id="cb3-2"><a href="" aria-label="2"></a>70</span>
+<span id="cb3-3"><a href="" aria-label="3"></a>90</span>
+<span id="cb3-4"><a href="" aria-label="4"></a>75</span>
+<span id="cb3-5"><a href="" aria-label="5"></a>60</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Nilai <code>NA</code> diganti dengan <strong>75</strong>.</p>
+<p>Namun, metode ini memiliki kelemahan karena dapat mengurangi variasi data.</p>
+<h3 id="contoh-median-imputation">Contoh Median Imputation</h3>
+<p>Misalkan:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="" aria-label="1"></a>50</span>
+<span id="cb4-2"><a href="" aria-label="2"></a>60</span>
+<span id="cb4-3"><a href="" aria-label="3"></a>70</span>
+<span id="cb4-4"><a href="" aria-label="4"></a>80</span>
+<span id="cb4-5"><a href="" aria-label="5"></a>NA</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Median data yang tersedia adalah:</p>
+<p><span class="math display">
+\text{Median}=65
+</span></p>
+<p>Maka:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="" aria-label="1"></a>50</span>
+<span id="cb5-2"><a href="" aria-label="2"></a>60</span>
+<span id="cb5-3"><a href="" aria-label="3"></a>70</span>
+<span id="cb5-4"><a href="" aria-label="4"></a>80</span>
+<span id="cb5-5"><a href="" aria-label="5"></a>65</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Median sering dipertimbangkan ketika data memiliki <strong>outlier</strong> atau distribusi yang tidak simetris.</p>
+<h3 id="apakah-missing-value-boleh-langsung-dihapus">Apakah Missing Value Boleh Langsung Dihapus?</h3>
+<p>Tidak selalu.</p>
+<p>Misalnya kita memiliki data:</p>
+<blockquote>
+<p>1.000 siswa</p>
+</blockquote>
+<p>dan hanya 5 siswa yang tidak memiliki nilai kuis.</p>
+<p>Menghapus 5 observasi mungkin tidak terlalu bermasalah.</p>
+<p>Tetapi jika:</p>
+<blockquote>
+<p>400 dari 1.000 siswa tidak memiliki nilai kuis,</p>
+</blockquote>
+<p>menghapus seluruh baris dapat menyebabkan kehilangan informasi yang sangat besar.</p>
+<p>Karena itu, sebelum menghapus missing value, perlu ditanyakan:</p>
+<blockquote>
+<p><strong>Berapa banyak data yang hilang?</strong></p>
+</blockquote>
+<p>dan</p>
+<blockquote>
+<p><strong>Mengapa data tersebut hilang?</strong></p>
+</blockquote>
+<h3 id="missing-value-sebagai-informasi">Missing Value sebagai Informasi</h3>
+<p>Missing value terkadang justru memiliki makna.</p>
+<p>Misalnya dalam data pendidikan:</p>
+<blockquote>
+<p>Siswa yang tidak memiliki nilai ujian mungkin bukan karena data hilang secara acak, tetapi karena siswa tersebut tidak mengikuti ujian.</p>
+</blockquote>
+<p>Jika semua nilai tersebut langsung diganti dengan rata-rata, informasi penting dapat hilang.</p>
+<p>Karena itu:</p>
+<blockquote>
+<p><strong>Missing value bukan sekadar masalah teknis, tetapi juga dapat mengandung informasi tentang proses pengumpulan data.</strong></p>
+</blockquote>
+</section></section>
+<section>
+<section id="contoh-kasus-sederhana" class="title-slide slide level1 center">
+<h1>Contoh kasus sederhana</h1>
+<p>Misalkan kita mendapatkan data:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Siswa</th>
+<th style="text-align: right;">Kehadiran</th>
+<th style="text-align: right;">Nilai</th>
+<th style="text-align: left;">Jenis Kelamin</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ahmad</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: left;">L</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Budi</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">L</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Citra</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">P</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Deni</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: left;">L</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Evi</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: left;">Perempuan</td>
+</tr>
+</tbody>
+</table>
+<p>Kita menemukan:</p>
+<ul>
+<li><code>NA</code> pada nilai;</li>
+<li><code>NA</code> pada kehadiran;</li>
+<li>kehadiran 105%;</li>
+<li>kategori jenis kelamin tidak konsisten.</li>
+</ul>
+<p>Setelah preprocessing, misalnya:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Siswa</th>
+<th style="text-align: right;">Kehadiran</th>
+<th style="text-align: right;">Nilai</th>
+<th style="text-align: left;">Jenis Kelamin</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ahmad</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: left;">Laki-laki</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Budi</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">Laki-laki</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Citra</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">Perempuan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Deni</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: left;">Laki-laki</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Evi</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: left;">Perempuan</td>
+</tr>
+</tbody>
+</table>
+<p>Data sekarang lebih siap digunakan dalam analisis.</p>
+<p><strong>Catatan:</strong> nilai hasil imputasi di atas hanya ilustrasi.</p>
+</section>
+<section id="mini-case-data-nilai-siswa" class="slide level2">
+<h2><em>Mini Case</em>: Data Nilai Siswa</h2>
+<p>Perhatikan data berikut.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Siswa</th>
+<th style="text-align: right;">Kehadiran</th>
+<th style="text-align: right;">Tugas</th>
+<th style="text-align: right;">Kuis</th>
+<th style="text-align: right;">UTS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">88</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">82</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">60</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">78</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">65</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: right;">50</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pertanyaan">Pertanyaan</h3>
+<p>Identifikasi:</p>
+<ul>
+<li>variabel numerik;</li>
+<li>variabel kategorik jika ada;</li>
+<li>missing value;</li>
+<li>invalid value;</li>
+<li>kemungkinan masalah lain.</li>
+</ul>
+<p>Kemudian diskusikan:</p>
+<blockquote>
+<p><strong>Apa yang harus dilakukan terhadap setiap masalah tersebut sebelum data digunakan untuk data mining?</strong></p>
+</blockquote>
+</section>
+<section id="aktivitas-kelompok" class="slide level2">
+<h2>Aktivitas Kelompok</h2>
+<p>Setiap kelompok mendapatkan sebuah dataset pendidikan sederhana.</p>
+<p>Tugas kelompok:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Tahapan</th>
+<th style="text-align: left;">Pertanyaan</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Identifikasi</td>
+<td style="text-align: left;">Data apa saja yang tersedia?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Struktur</td>
+<td style="text-align: left;">Mana observasi dan mana variabel?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tipe data</td>
+<td style="text-align: left;">Mana yang numerik dan kategorik?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cleaning</td>
+<td style="text-align: left;">Apakah terdapat data yang tidak konsisten?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Missing</td>
+<td style="text-align: left;">Apakah terdapat missing value?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Validitas</td>
+<td style="text-align: left;">Apakah terdapat nilai yang tidak masuk akal?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Solusi</td>
+<td style="text-align: left;">Bagaimana setiap masalah akan ditangani?</td>
+</tr>
+</tbody>
+</table>
+<p>Setiap kelompok kemudian menjelaskan <strong>alasan</strong> di balik keputusan preprocessing yang mereka ambil.</p>
+</section></section>
+<section>
+<section id="diskusi" class="title-slide slide level1 center">
+<h1>Diskusi</h1>
+<p>Perhatikan dua situasi berikut.</p>
+</section>
+<section id="situasi-a" class="slide level2">
+<h2>Situasi A</h2>
+<p>Dari 1.000 siswa, hanya 5 siswa yang tidak memiliki nilai kuis.</p>
+</section>
+<section id="situasi-b" class="slide level2">
+<h2>Situasi B</h2>
+<p>Dari 1.000 siswa, 400 siswa tidak memiliki nilai kuis.</p>
+<p>Apakah keduanya sebaiknya ditangani dengan cara yang sama?</p>
+<p><strong>Mengapa?</strong></p>
+</section>
+<section id="kesalahan-yang-sering-terjadi" class="slide level2">
+<h2>Kesalahan yang Sering Terjadi</h2>
+<p>Beberapa kesalahan umum dalam preprocessing:</p>
+<blockquote>
+<p><strong>Menghapus semua baris yang memiliki missing value tanpa memeriksa jumlahnya.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>Mengganti semua missing value dengan rata-rata tanpa memahami penyebab missing.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>Menghapus outlier hanya karena nilainya terlihat berbeda.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>Menganggap angka sebagai data numerik tanpa melihat maknanya.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>Melakukan preprocessing tanpa mempertimbangkan tujuan analisis.</strong></p>
+</blockquote>
+<p>Preprocessing bukan sekadar “membersihkan data”, tetapi merupakan bagian dari proses analisis yang membutuhkan pertimbangan.</p>
+</section>
+<section id="hubungan-dengan-pertemuan-sebelumnya" class="slide level2">
+<h2>Hubungan dengan Pertemuan Sebelumnya</h2>
+<p>Pada pertemuan pertama kita membahas:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="" aria-label="1"></a>Data Pendidikan</span>
+<span id="cb6-2"><a href="" aria-label="2"></a>       ↓</span>
+<span id="cb6-3"><a href="" aria-label="3"></a>KDD</span>
+<span id="cb6-4"><a href="" aria-label="4"></a>       ↓</span>
+<span id="cb6-5"><a href="" aria-label="5"></a>Data Mining</span>
+<span id="cb6-6"><a href="" aria-label="6"></a>       ↓</span>
+<span id="cb6-7"><a href="" aria-label="7"></a>Pola / Pengetahuan</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Sekarang kita melihat bahwa terdapat tahapan penting sebelum data mining:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="" aria-label="1"></a>Data Pendidikan</span>
+<span id="cb7-2"><a href="" aria-label="2"></a>       ↓</span>
+<span id="cb7-3"><a href="" aria-label="3"></a>Selection</span>
+<span id="cb7-4"><a href="" aria-label="4"></a>       ↓</span>
+<span id="cb7-5"><a href="" aria-label="5"></a>Preprocessing</span>
+<span id="cb7-6"><a href="" aria-label="6"></a>       ↓</span>
+<span id="cb7-7"><a href="" aria-label="7"></a>Transformation</span>
+<span id="cb7-8"><a href="" aria-label="8"></a>       ↓</span>
+<span id="cb7-9"><a href="" aria-label="9"></a>Data Mining</span>
+<span id="cb7-10"><a href="" aria-label="10"></a>       ↓</span>
+<span id="cb7-11"><a href="" aria-label="11"></a>Evaluation</span>
+<span id="cb7-12"><a href="" aria-label="12"></a>       ↓</span>
+<span id="cb7-13"><a href="" aria-label="13"></a>Knowledge</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Dengan demikian:</p>
+<blockquote>
+<p><strong>Kualitas hasil data mining sangat dipengaruhi oleh kualitas data yang digunakan.</strong></p>
+</blockquote>
+</section></section>
+<section>
+<section id="inti-pembelajaran" class="title-slide slide level1 center">
+<h1>Inti Pembelajaran</h1>
+<p>Hal-hal yang perlu diingat:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 73%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Konsep</th>
+<th style="text-align: left;">Inti</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Data pendidikan</strong></td>
+<td style="text-align: left;">Data yang dihasilkan dari proses dan lingkungan pendidikan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Data numerik</strong></td>
+<td style="text-align: left;">Data yang direpresentasikan dalam bentuk angka</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Data kategorik</strong></td>
+<td style="text-align: left;">Data yang menunjukkan kategori atau kelompok</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Data cleaning</strong></td>
+<td style="text-align: left;">Proses memperbaiki masalah kualitas data</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Missing value</strong></td>
+<td style="text-align: left;">Nilai yang tidak tersedia</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Preprocessing</strong></td>
+<td style="text-align: left;">Serangkaian proses menyiapkan data sebelum analisis</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Tujuan preprocessing</strong></td>
+<td style="text-align: left;">Menghasilkan data yang lebih valid, konsisten, dan siap dianalisis</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="exit-ticket" class="slide level2">
+<h2><em>Exit Ticket</em></h2>
+<p>Jawab secara singkat:</p>
+<p><strong>Apa perbedaan antara data cleaning dan data preprocessing?</strong></p>
+<p><strong>Mengapa missing value tidak boleh langsung dihapus tanpa diperiksa terlebih dahulu?</strong></p>
+<p><strong>Sebutkan tiga masalah kualitas data yang mungkin ditemukan dalam data pendidikan.</strong></p>
+<p><strong>Jika Anda memiliki data 1.000 siswa dan 5% nilai kuis hilang, apa yang akan Anda lakukan? Jelaskan alasannya.</strong></p>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="edm2js_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="edm2js_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="edm2js_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="edm2js_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="edm2js_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="edm2js_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="edm2js_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="edm2js_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="edm2js_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

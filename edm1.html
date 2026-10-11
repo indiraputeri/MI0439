@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Indira Puteri Kinasih">
+
+<title>Pengantar</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="edm1_files/libs/clipboard/clipboard.min.js"></script>
+<script src="edm1_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="edm1_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="edm1_files/libs/quarto-html/popper.min.js"></script>
+<script src="edm1_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="edm1_files/libs/quarto-html/anchor.min.js"></script>
+<link href="edm1_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="edm1_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="edm1_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="edm1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="edm1_files/libs/bootstrap/bootstrap-c2e55264ed47ce3b2e0326a2269f9400.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#capaian-pembelajaran" id="toc-capaian-pembelajaran" class="nav-link active" data-scroll-target="#capaian-pembelajaran"><span class="header-section-number">1</span> Capaian Pembelajaran</a></li>
+  <li><a href="#pengantar-mengapa-data-penting-dalam-pendidikan" id="toc-pengantar-mengapa-data-penting-dalam-pendidikan" class="nav-link" data-scroll-target="#pengantar-mengapa-data-penting-dalam-pendidikan"><span class="header-section-number">2</span> Pengantar: Mengapa Data Penting dalam Pendidikan?</a></li>
+  <li><a href="#apa-itu-data-mining" id="toc-apa-itu-data-mining" class="nav-link" data-scroll-target="#apa-itu-data-mining"><span class="header-section-number">3</span> Apa Itu Data Mining?</a>
+  <ul class="collapse">
+  <li><a href="#beberapa-tujuan-data-mining" id="toc-beberapa-tujuan-data-mining" class="nav-link" data-scroll-target="#beberapa-tujuan-data-mining"><span class="header-section-number">3.1</span> Beberapa Tujuan Data Mining</a></li>
+  </ul></li>
+  <li><a href="#educational-data-mining-edm" id="toc-educational-data-mining-edm" class="nav-link" data-scroll-target="#educational-data-mining-edm"><span class="header-section-number">4</span> Educational Data Mining (EDM)</a>
+  <ul class="collapse">
+  <li><a href="#pengertian-edm" id="toc-pengertian-edm" class="nav-link" data-scroll-target="#pengertian-edm"><span class="header-section-number">4.1</span> Pengertian EDM</a></li>
+  </ul></li>
+  <li><a href="#jenis-data-dalam-edm" id="toc-jenis-data-dalam-edm" class="nav-link" data-scroll-target="#jenis-data-dalam-edm"><span class="header-section-number">5</span> Jenis Data dalam EDM</a>
+  <ul class="collapse">
+  <li><a href="#data-akademik" id="toc-data-akademik" class="nav-link" data-scroll-target="#data-akademik"><span class="header-section-number">5.1</span> Data Akademik</a></li>
+  <li><a href="#data-kehadiran" id="toc-data-kehadiran" class="nav-link" data-scroll-target="#data-kehadiran"><span class="header-section-number">5.2</span> Data Kehadiran</a></li>
+  <li><a href="#data-aktivitas-pembelajaran" id="toc-data-aktivitas-pembelajaran" class="nav-link" data-scroll-target="#data-aktivitas-pembelajaran"><span class="header-section-number">5.3</span> Data Aktivitas Pembelajaran</a></li>
+  <li><a href="#data-interaksi" id="toc-data-interaksi" class="nav-link" data-scroll-target="#data-interaksi"><span class="header-section-number">5.4</span> Data Interaksi</a></li>
+  <li><a href="#data-karakteristik-siswa" id="toc-data-karakteristik-siswa" class="nav-link" data-scroll-target="#data-karakteristik-siswa"><span class="header-section-number">5.5</span> Data Karakteristik Siswa</a></li>
+  </ul></li>
+  <li><a href="#mengapa-edm-dibutuhkan" id="toc-mengapa-edm-dibutuhkan" class="nav-link" data-scroll-target="#mengapa-edm-dibutuhkan"><span class="header-section-number">6</span> Mengapa EDM Dibutuhkan?</a></li>
+  <li><a href="#contoh-edm-dalam-konteks-pgmi" id="toc-contoh-edm-dalam-konteks-pgmi" class="nav-link" data-scroll-target="#contoh-edm-dalam-konteks-pgmi"><span class="header-section-number">7</span> Contoh EDM dalam Konteks PGMI</a>
+  <ul class="collapse">
+  <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification"><span class="header-section-number">7.1</span> Classification</a></li>
+  <li><a href="#clustering" id="toc-clustering" class="nav-link" data-scroll-target="#clustering"><span class="header-section-number">7.2</span> Clustering</a></li>
+  <li><a href="#association-rule" id="toc-association-rule" class="nav-link" data-scroll-target="#association-rule"><span class="header-section-number">7.3</span> Association Rule</a></li>
+  <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression"><span class="header-section-number">7.4</span> Regression</a></li>
+  </ul></li>
+  <li><a href="#knowledge-discovery-in-databases-kdd" id="toc-knowledge-discovery-in-databases-kdd" class="nav-link" data-scroll-target="#knowledge-discovery-in-databases-kdd"><span class="header-section-number">8</span> Knowledge Discovery in Databases (KDD)</a>
+  <ul class="collapse">
+  <li><a href="#tahap-1-selection" id="toc-tahap-1-selection" class="nav-link" data-scroll-target="#tahap-1-selection"><span class="header-section-number">8.1</span> Tahap 1 — Selection</a></li>
+  <li><a href="#tahap-2-preprocessing" id="toc-tahap-2-preprocessing" class="nav-link" data-scroll-target="#tahap-2-preprocessing"><span class="header-section-number">8.2</span> Tahap 2 — Preprocessing</a></li>
+  <li><a href="#tahap-3-transformation" id="toc-tahap-3-transformation" class="nav-link" data-scroll-target="#tahap-3-transformation"><span class="header-section-number">8.3</span> Tahap 3 — Transformation</a></li>
+  <li><a href="#tahap-4-data-mining" id="toc-tahap-4-data-mining" class="nav-link" data-scroll-target="#tahap-4-data-mining"><span class="header-section-number">8.4</span> Tahap 4 — Data Mining</a></li>
+  <li><a href="#tahap-5-evaluation" id="toc-tahap-5-evaluation" class="nav-link" data-scroll-target="#tahap-5-evaluation"><span class="header-section-number">8.5</span> Tahap 5 — Evaluation</a></li>
+  <li><a href="#tahap-6-knowledge" id="toc-tahap-6-knowledge" class="nav-link" data-scroll-target="#tahap-6-knowledge"><span class="header-section-number">8.6</span> Tahap 6 — Knowledge</a></li>
+  </ul></li>
+  <li><a href="#learning-analytics" id="toc-learning-analytics" class="nav-link" data-scroll-target="#learning-analytics"><span class="header-section-number">9</span> Learning Analytics</a>
+  <ul class="collapse">
+  <li><a href="#apa-itu-learning-analytics" id="toc-apa-itu-learning-analytics" class="nav-link" data-scroll-target="#apa-itu-learning-analytics"><span class="header-section-number">9.1</span> Apa Itu Learning Analytics?</a></li>
+  </ul></li>
+  <li><a href="#edm-dan-learning-analytics" id="toc-edm-dan-learning-analytics" class="nav-link" data-scroll-target="#edm-dan-learning-analytics"><span class="header-section-number">10</span> EDM dan Learning Analytics</a></li>
+  <li><a href="#perbedaan-edm-dan-learning-analytics" id="toc-perbedaan-edm-dan-learning-analytics" class="nav-link" data-scroll-target="#perbedaan-edm-dan-learning-analytics"><span class="header-section-number">11</span> Perbedaan EDM dan Learning Analytics</a></li>
+  <li><a href="#analogi-edm-sebagai-detektif-data" id="toc-analogi-edm-sebagai-detektif-data" class="nav-link" data-scroll-target="#analogi-edm-sebagai-detektif-data"><span class="header-section-number">12</span> Analogi: EDM sebagai “Detektif Data”</a></li>
+  <li><a href="#analogi-learning-analytics-sebagai-dokter-pendidikan" id="toc-analogi-learning-analytics-sebagai-dokter-pendidikan" class="nav-link" data-scroll-target="#analogi-learning-analytics-sebagai-dokter-pendidikan"><span class="header-section-number">13</span> Analogi: Learning Analytics sebagai “Dokter Pendidikan”</a></li>
+  <li><a href="#contoh-kasus-lms-di-sekolah-dasar" id="toc-contoh-kasus-lms-di-sekolah-dasar" class="nav-link" data-scroll-target="#contoh-kasus-lms-di-sekolah-dasar"><span class="header-section-number">14</span> Contoh Kasus: LMS di Sekolah Dasar</a>
+  <ul class="collapse">
+  <li><a href="#jika-menggunakan-edm" id="toc-jika-menggunakan-edm" class="nav-link" data-scroll-target="#jika-menggunakan-edm"><span class="header-section-number">14.1</span> Jika menggunakan EDM</a></li>
+  <li><a href="#jika-menggunakan-learning-analytics" id="toc-jika-menggunakan-learning-analytics" class="nav-link" data-scroll-target="#jika-menggunakan-learning-analytics"><span class="header-section-number">14.2</span> Jika menggunakan Learning Analytics</a></li>
+  </ul></li>
+  <li><a href="#dari-data-menjadi-tindakan" id="toc-dari-data-menjadi-tindakan" class="nav-link" data-scroll-target="#dari-data-menjadi-tindakan"><span class="header-section-number">15</span> Dari Data Menjadi Tindakan</a></li>
+  <li><a href="#studi-kasus" id="toc-studi-kasus" class="nav-link" data-scroll-target="#studi-kasus"><span class="header-section-number">16</span> Studi Kasus</a>
+  <ul class="collapse">
+  <li><a href="#kasus-siswa-dengan-nilai-matematika-rendah" id="toc-kasus-siswa-dengan-nilai-matematika-rendah" class="nav-link" data-scroll-target="#kasus-siswa-dengan-nilai-matematika-rendah"><span class="header-section-number">16.1</span> Kasus: Siswa dengan Nilai Matematika Rendah</a></li>
+  </ul></li>
+  <li><a href="#aktivitas-kelompok" id="toc-aktivitas-kelompok" class="nav-link" data-scroll-target="#aktivitas-kelompok"><span class="header-section-number">17</span> Aktivitas Kelompok</a></li>
+  <li><a href="#latihan-edm-atau-learning-analytics" id="toc-latihan-edm-atau-learning-analytics" class="nav-link" data-scroll-target="#latihan-edm-atau-learning-analytics"><span class="header-section-number">18</span> Latihan: EDM atau Learning Analytics?</a></li>
+  <li><a href="#pertanyaan-refleksi" id="toc-pertanyaan-refleksi" class="nav-link" data-scroll-target="#pertanyaan-refleksi"><span class="header-section-number">19</span> Pertanyaan Refleksi</a></li>
+  <li><a href="#exit-ticket" id="toc-exit-ticket" class="nav-link" data-scroll-target="#exit-ticket"><span class="header-section-number">20</span> Exit Ticket</a></li>
+  <li><a href="#rangkuman" id="toc-rangkuman" class="nav-link" data-scroll-target="#rangkuman"><span class="header-section-number">21</span> Rangkuman</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="edm1.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Pengantar</h1>
+<p class="subtitle lead">Data mining</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Indira Puteri Kinasih </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="capaian-pembelajaran" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Capaian Pembelajaran</h1>
+<p>Setelah mengikuti pertemuan ini, mahasiswa diharapkan mampu:</p>
+<ol type="1">
+<li>menjelaskan konsep dasar <strong>Educational Data Mining (EDM)</strong>;</li>
+<li>mengidentifikasi jenis data yang dapat dianalisis dalam konteks pendidikan;</li>
+<li>menjelaskan tahapan <strong>Knowledge Discovery in Databases (KDD)</strong>;</li>
+<li>menjelaskan konsep dasar <strong>Learning Analytics</strong>;</li>
+<li>membedakan EDM dan Learning Analytics;</li>
+<li>memberikan contoh penerapan EDM dalam konteks pembelajaran di MI/SD.</li>
+</ol>
+<hr>
+</section>
+<section id="pengantar-mengapa-data-penting-dalam-pendidikan" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Pengantar: Mengapa Data Penting dalam Pendidikan?</h1>
+<p>Bayangkan seorang guru MI memiliki data pembelajaran siswa selama satu semester.</p>
+<p>Data tersebut dapat berupa:</p>
+<ul>
+<li>nilai tugas;</li>
+<li>nilai kuis;</li>
+<li>nilai UTS dan UAS;</li>
+<li>kehadiran;</li>
+<li>jumlah tugas yang dikumpulkan;</li>
+<li>aktivitas siswa pada LMS;</li>
+<li>waktu mengerjakan soal;</li>
+<li>frekuensi membaca materi;</li>
+<li>aktivitas menonton video pembelajaran;</li>
+<li>hasil asesmen diagnostik.</li>
+</ul>
+<p>Secara sederhana, guru dapat menggunakan data tersebut untuk mengetahui:</p>
+<blockquote class="blockquote">
+<p><strong>Siapa siswa yang memperoleh nilai rendah?</strong></p>
+</blockquote>
+<p>Namun, kita dapat mengajukan pertanyaan yang lebih menarik:</p>
+<blockquote class="blockquote">
+<p><strong>Apakah terdapat pola tertentu yang dapat menunjukkan bahwa seorang siswa berisiko mengalami kesulitan belajar?</strong></p>
+</blockquote>
+<p>Misalnya, dari data ditemukan pola bahwa siswa yang memiliki:</p>
+<ul>
+<li>kehadiran rendah;</li>
+<li>aktivitas belajar digital rendah; dan</li>
+<li>nilai kuis rendah</li>
+</ul>
+<p>cenderung memperoleh nilai akhir yang rendah.</p>
+<p>Pertanyaan berikutnya adalah:</p>
+<blockquote class="blockquote">
+<p><strong>Bagaimana kita dapat menemukan pola tersebut secara sistematis dari data dalam jumlah besar?</strong></p>
+</blockquote>
+<p>Di sinilah <strong>data mining dalam pendidikan</strong> menjadi penting.</p>
+<hr>
+</section>
+<section id="apa-itu-data-mining" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Apa Itu Data Mining?</h1>
+<p>Secara sederhana,</p>
+<blockquote class="blockquote">
+<p><strong>Data mining adalah proses menemukan pola, hubungan, atau informasi yang berguna dari sekumpulan data.</strong></p>
+</blockquote>
+<p>Data mining tidak sekadar melihat atau menghitung data.</p>
+<p>Misalnya terdapat data:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Siswa</th>
+<th style="text-align: right;">Kehadiran</th>
+<th style="text-align: right;">Nilai Kuis</th>
+<th style="text-align: right;">Nilai UAS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">95%</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">88</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">90%</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">82</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C</td>
+<td style="text-align: right;">70%</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">58</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">65%</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E</td>
+<td style="text-align: right;">98%</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">95</td>
+</tr>
+</tbody>
+</table>
+<p>Dari tabel tersebut, kita mungkin melihat bahwa siswa dengan kehadiran dan nilai kuis rendah cenderung memiliki nilai UAS yang rendah.</p>
+<p>Data mining mencoba menemukan pola semacam ini secara <strong>sistematis menggunakan teknik statistik, komputasi, dan machine learning</strong>.</p>
+<section id="beberapa-tujuan-data-mining" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="beberapa-tujuan-data-mining"><span class="header-section-number">3.1</span> Beberapa Tujuan Data Mining</h2>
+<p>Data mining dapat digunakan untuk:</p>
+<ul>
+<li><strong>classification</strong> — mengelompokkan data ke dalam kelas tertentu;</li>
+<li><strong>clustering</strong> — menemukan kelompok yang memiliki karakteristik serupa;</li>
+<li><strong>association</strong> — menemukan hubungan atau pola kemunculan bersama;</li>
+<li><strong>regression</strong> — memprediksi nilai numerik;</li>
+<li><strong>anomaly detection</strong> — menemukan pola atau observasi yang tidak biasa.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="educational-data-mining-edm" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Educational Data Mining (EDM)</h1>
+<section id="pengertian-edm" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="pengertian-edm"><span class="header-section-number">4.1</span> Pengertian EDM</h2>
+<p><strong>Educational Data Mining (EDM)</strong> merupakan penerapan teknik data mining untuk menganalisis data yang berasal dari lingkungan pendidikan.</p>
+<p>Secara sederhana:</p>
+<p><span class="math display">
+\text{EDM} = \text{Data Mining} + \text{Data Pendidikan}
+</span></p>
+<p>Data pendidikan dapat berasal dari:</p>
+<ul>
+<li>siswa;</li>
+<li>guru;</li>
+<li>sekolah;</li>
+<li>kelas;</li>
+<li>ujian;</li>
+<li>tugas;</li>
+<li>sistem akademik;</li>
+<li>Learning Management System (LMS);</li>
+<li>aplikasi pembelajaran;</li>
+<li>interaksi siswa dengan materi pembelajaran.</li>
+</ul>
+<p>Dengan EDM, data pendidikan dapat digunakan untuk menemukan pola yang mungkin sulit ditemukan melalui pengamatan biasa.</p>
+<hr>
+</section>
+</section>
+<section id="jenis-data-dalam-edm" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Jenis Data dalam EDM</h1>
+<p>Dalam konteks pendidikan, data yang dianalisis dapat berasal dari berbagai sumber.</p>
+<section id="data-akademik" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="data-akademik"><span class="header-section-number">5.1</span> Data Akademik</h2>
+<p>Contohnya:</p>
+<ul>
+<li>nilai tugas;</li>
+<li>nilai kuis;</li>
+<li>nilai UTS;</li>
+<li>nilai UAS;</li>
+<li>nilai mata pelajaran;</li>
+<li>nilai remedial.</li>
+</ul>
+</section>
+<section id="data-kehadiran" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="data-kehadiran"><span class="header-section-number">5.2</span> Data Kehadiran</h2>
+<p>Contohnya:</p>
+<ul>
+<li>jumlah kehadiran;</li>
+<li>jumlah ketidakhadiran;</li>
+<li>keterlambatan;</li>
+<li>pola kehadiran.</li>
+</ul>
+</section>
+<section id="data-aktivitas-pembelajaran" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="data-aktivitas-pembelajaran"><span class="header-section-number">5.3</span> Data Aktivitas Pembelajaran</h2>
+<p>Contohnya:</p>
+<ul>
+<li>jumlah materi yang dibaca;</li>
+<li>jumlah video yang ditonton;</li>
+<li>waktu belajar;</li>
+<li>jumlah latihan yang dikerjakan;</li>
+<li>jumlah login ke LMS.</li>
+</ul>
+</section>
+<section id="data-interaksi" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="data-interaksi"><span class="header-section-number">5.4</span> Data Interaksi</h2>
+<p>Contohnya:</p>
+<ul>
+<li>interaksi siswa dengan guru;</li>
+<li>diskusi;</li>
+<li>komentar;</li>
+<li>forum pembelajaran;</li>
+<li>aktivitas kolaborasi.</li>
+</ul>
+</section>
+<section id="data-karakteristik-siswa" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="data-karakteristik-siswa"><span class="header-section-number">5.5</span> Data Karakteristik Siswa</h2>
+<p>Contohnya:</p>
+<ul>
+<li>kelas;</li>
+<li>usia;</li>
+<li>jenis kelamin;</li>
+<li>karakteristik akademik;</li>
+<li>latar belakang pendidikan.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Catatan:</strong> Penggunaan data siswa harus memperhatikan privasi, keamanan data, etika penelitian, dan tujuan pendidikan.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="mengapa-edm-dibutuhkan" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Mengapa EDM Dibutuhkan?</h1>
+<p>Jumlah data yang dihasilkan dalam lingkungan pendidikan semakin besar.</p>
+<p>Seorang guru mungkin dapat memahami perkembangan beberapa siswa melalui pengamatan langsung.</p>
+<p>Namun, ketika jumlah siswa mencapai ratusan atau bahkan ribuan, menemukan pola secara manual menjadi semakin sulit.</p>
+<p>EDM dapat membantu menjawab pertanyaan seperti:</p>
+<section id="memahami-siswa" class="level3" data-number="6.0.1">
+<h3 data-number="6.0.1" class="anchored" data-anchor-id="memahami-siswa"><span class="header-section-number">6.0.1</span> Memahami siswa</h3>
+<blockquote class="blockquote">
+<p>Bagaimana karakteristik siswa yang mengalami kesulitan belajar?</p>
+</blockquote>
+</section>
+<section id="memprediksi" class="level3" data-number="6.0.2">
+<h3 data-number="6.0.2" class="anchored" data-anchor-id="memprediksi"><span class="header-section-number">6.0.2</span> Memprediksi</h3>
+<blockquote class="blockquote">
+<p>Siswa mana yang berpotensi memperoleh hasil belajar rendah?</p>
+</blockquote>
+</section>
+<section id="mengelompokkan" class="level3" data-number="6.0.3">
+<h3 data-number="6.0.3" class="anchored" data-anchor-id="mengelompokkan"><span class="header-section-number">6.0.3</span> Mengelompokkan</h3>
+<blockquote class="blockquote">
+<p>Apakah siswa dapat dikelompokkan berdasarkan pola belajar mereka?</p>
+</blockquote>
+</section>
+<section id="menemukan-hubungan" class="level3" data-number="6.0.4">
+<h3 data-number="6.0.4" class="anchored" data-anchor-id="menemukan-hubungan"><span class="header-section-number">6.0.4</span> Menemukan hubungan</h3>
+<blockquote class="blockquote">
+<p>Apakah kehadiran berkaitan dengan hasil belajar?</p>
+</blockquote>
+</section>
+<section id="mengevaluasi-pembelajaran" class="level3" data-number="6.0.5">
+<h3 data-number="6.0.5" class="anchored" data-anchor-id="mengevaluasi-pembelajaran"><span class="header-section-number">6.0.5</span> Mengevaluasi pembelajaran</h3>
+<blockquote class="blockquote">
+<p>Apakah aktivitas siswa pada media pembelajaran digital berkaitan dengan hasil belajar?</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="contoh-edm-dalam-konteks-pgmi" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Contoh EDM dalam Konteks PGMI</h1>
+<p>Misalkan seorang peneliti memiliki data dari 1.000 siswa MI.</p>
+<p>Variabel yang tersedia:</p>
+<pre class="text"><code>Kehadiran
+Nilai tugas
+Nilai kuis
+Nilai UTS
+Nilai UAS
+Jumlah akses LMS
+Waktu belajar
+Jumlah video yang ditonton</code></pre>
+<p>Data tersebut dapat dianalisis menggunakan beberapa teknik.</p>
+<section id="classification" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="classification"><span class="header-section-number">7.1</span> Classification</h2>
+<p>Tujuannya adalah memprediksi kategori tertentu.</p>
+<p>Misalnya:</p>
+<pre class="text"><code>Risiko rendah
+Risiko sedang
+Risiko tinggi</code></pre>
+<p>Model classification dapat digunakan untuk memprediksi kategori risiko berdasarkan karakteristik belajar siswa.</p>
+<hr>
+</section>
+<section id="clustering" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="clustering"><span class="header-section-number">7.2</span> Clustering</h2>
+<p>Clustering digunakan untuk menemukan kelompok siswa yang memiliki karakteristik serupa.</p>
+<p>Misalnya ditemukan:</p>
+<pre class="text"><code>Kelompok 1 → aktif dan berprestasi
+
+Kelompok 2 → aktif tetapi prestasi sedang
+
+Kelompok 3 → kurang aktif dan berprestasi rendah</code></pre>
+<p>Kelompok tersebut tidak ditentukan sebelumnya. Algoritma membantu menemukan kelompok berdasarkan pola dalam data.</p>
+<hr>
+</section>
+<section id="association-rule" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="association-rule"><span class="header-section-number">7.3</span> Association Rule</h2>
+<p>Association digunakan untuk menemukan pola hubungan.</p>
+<p>Misalnya ditemukan:</p>
+<pre class="text"><code>Kehadiran rendah
++
+Aktivitas LMS rendah
++
+Nilai kuis rendah
+        ↓
+Nilai akhir rendah</code></pre>
+<p>Pola seperti ini dapat menjadi informasi yang berguna bagi guru.</p>
+<hr>
+</section>
+<section id="regression" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="regression"><span class="header-section-number">7.4</span> Regression</h2>
+<p>Regression digunakan ketika target yang ingin diprediksi berupa angka.</p>
+<p>Misalnya:</p>
+<blockquote class="blockquote">
+<p>Memprediksi nilai akhir siswa berdasarkan kehadiran, nilai tugas, dan aktivitas pembelajaran.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="knowledge-discovery-in-databases-kdd" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Knowledge Discovery in Databases (KDD)</h1>
+<p>Sebelum membahas lebih jauh mengenai EDM, kita perlu memahami konsep <strong>Knowledge Discovery in Databases (KDD)</strong>.</p>
+<p>KDD dapat dipahami sebagai:</p>
+<blockquote class="blockquote">
+<p><strong>proses menemukan pengetahuan yang berguna dari data.</strong></p>
+</blockquote>
+<p>Hal penting yang perlu diingat:</p>
+<blockquote class="blockquote">
+<p><strong>KDD bukan sama dengan Data Mining.</strong></p>
+</blockquote>
+<p>Data mining merupakan <strong>salah satu tahap dalam proses KDD</strong>.</p>
+<p>Secara umum, proses KDD dapat digambarkan sebagai berikut:</p>
+<pre class="text"><code>DATA
+  ↓
+Selection
+  ↓
+Preprocessing
+  ↓
+Transformation
+  ↓
+Data Mining
+  ↓
+Evaluation / Interpretation
+  ↓
+KNOWLEDGE</code></pre>
+<hr>
+<section id="tahap-1-selection" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="tahap-1-selection"><span class="header-section-number">8.1</span> Tahap 1 — Selection</h2>
+<p><strong>Selection</strong> adalah memilih data yang relevan dengan tujuan analisis.</p>
+<p>Misalnya sekolah memiliki:</p>
+<pre class="text"><code>Data siswa
+Data kehadiran
+Data nilai
+Data perpustakaan
+Data ekstrakurikuler
+Data LMS
+Data fasilitas sekolah</code></pre>
+<p>Jika penelitian bertujuan memprediksi kesulitan belajar, tidak semua data harus digunakan.</p>
+<p>Peneliti dapat memilih:</p>
+<pre class="text"><code>Kehadiran
+Nilai tugas
+Nilai kuis
+Nilai UTS
+Aktivitas LMS</code></pre>
+<p>Jadi:</p>
+<blockquote class="blockquote">
+<p><strong>Selection menjawab pertanyaan: data mana yang relevan dengan masalah yang ingin kita selesaikan?</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="tahap-2-preprocessing" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="tahap-2-preprocessing"><span class="header-section-number">8.2</span> Tahap 2 — Preprocessing</h2>
+<p>Data dunia nyata sering kali tidak sempurna.</p>
+<p>Misalnya:</p>
+<pre class="text"><code>Nilai = kosong
+Kehadiran = 105%
+Nama siswa berbeda format
+Data siswa tercatat dua kali
+Nilai ditulis sebagai "80" dan "delapan puluh"</code></pre>
+<p>Karena itu, data perlu dibersihkan.</p>
+<p>Proses preprocessing dapat mencakup:</p>
+<ul>
+<li>menangani missing value;</li>
+<li>menghapus duplikasi;</li>
+<li>memperbaiki kesalahan;</li>
+<li>menyeragamkan format;</li>
+<li>menangani data yang tidak konsisten;</li>
+<li>memeriksa data yang tidak wajar.</li>
+</ul>
+<p>Contoh:</p>
+<pre class="text"><code>Sebelum:
+
+Siswa A → 90
+Siswa B → kosong
+Siswa C → 85
+Siswa C → 85
+
+Sesudah:
+
+Siswa A → 90
+Siswa B → [ditangani]
+Siswa C → 85</code></pre>
+<hr>
+</section>
+<section id="tahap-3-transformation" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="tahap-3-transformation"><span class="header-section-number">8.3</span> Tahap 3 — Transformation</h2>
+<p>Setelah data dibersihkan, data dapat ditransformasikan agar sesuai dengan kebutuhan analisis.</p>
+<p>Misalnya:</p>
+<pre class="text"><code>Kehadiran
+
+95%
+90%
+85%
+70%
+65%</code></pre>
+<p>dapat diubah menjadi:</p>
+<pre class="text"><code>Tinggi
+Tinggi
+Tinggi
+Sedang
+Rendah</code></pre>
+<p>Atau kita dapat membuat variabel baru:</p>
+<pre class="text"><code>Rata-rata nilai tugas
+
+Frekuensi akses LMS
+
+Persentase kehadiran
+
+Total aktivitas belajar</code></pre>
+<p>Tujuannya adalah membuat data lebih sesuai untuk proses analisis.</p>
+<hr>
+</section>
+<section id="tahap-4-data-mining" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="tahap-4-data-mining"><span class="header-section-number">8.4</span> Tahap 4 — Data Mining</h2>
+<p>Pada tahap ini digunakan algoritma untuk menemukan pola dalam data.</p>
+<p>Beberapa teknik yang akan dipelajari dalam mata kuliah ini antara lain:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 33%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Teknik</th>
+<th style="text-align: left;">Tujuan</th>
+<th style="text-align: left;">Contoh Pendidikan</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Classification</td>
+<td style="text-align: left;">Memprediksi kelas</td>
+<td style="text-align: left;">Siswa berisiko/tidak</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Clustering</td>
+<td style="text-align: left;">Mengelompokkan data</td>
+<td style="text-align: left;">Kelompok pola belajar</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Association</td>
+<td style="text-align: left;">Menemukan hubungan</td>
+<td style="text-align: left;">Pola aktivitas belajar</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Regression</td>
+<td style="text-align: left;">Memprediksi angka</td>
+<td style="text-align: left;">Prediksi nilai akhir</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Anomaly Detection</td>
+<td style="text-align: left;">Menemukan pola tidak biasa</td>
+<td style="text-align: left;">Aktivitas belajar yang tidak normal</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="tahap-5-evaluation" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="tahap-5-evaluation"><span class="header-section-number">8.5</span> Tahap 5 — Evaluation</h2>
+<p>Tidak semua pola yang ditemukan otomatis berguna.</p>
+<p>Misalnya sebuah algoritma menemukan:</p>
+<blockquote class="blockquote">
+<p>“Siswa yang menggunakan komputer memiliki nilai lebih tinggi.”</p>
+</blockquote>
+<p>Apakah penggunaan komputer <strong>menyebabkan</strong> nilai lebih tinggi?</p>
+<p><strong>Belum tentu.</strong></p>
+<p>Mungkin terdapat faktor lain seperti:</p>
+<ul>
+<li>kemampuan awal;</li>
+<li>motivasi belajar;</li>
+<li>dukungan orang tua;</li>
+<li>akses internet;</li>
+<li>kondisi ekonomi;</li>
+<li>kualitas pembelajaran;</li>
+<li>karakteristik guru.</li>
+</ul>
+<p>Karena itu, hasil data mining harus dievaluasi.</p>
+<p>Pertanyaan yang perlu diajukan:</p>
+<ul>
+<li>Apakah pola tersebut valid?</li>
+<li>Apakah pola tersebut masuk akal?</li>
+<li>Apakah pola tersebut relevan?</li>
+<li>Apakah pola tersebut dapat digunakan dalam konteks pendidikan?</li>
+<li>Apakah terdapat kemungkinan bias?</li>
+</ul>
+<hr>
+</section>
+<section id="tahap-6-knowledge" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="tahap-6-knowledge"><span class="header-section-number">8.6</span> Tahap 6 — Knowledge</h2>
+<p>Tujuan akhir KDD bukan sekadar menghasilkan angka atau model.</p>
+<p>Tujuannya adalah menghasilkan <strong>pengetahuan yang bermakna dan dapat digunakan</strong>.</p>
+<p>Misalnya:</p>
+<blockquote class="blockquote">
+<p>Siswa dengan kehadiran di bawah 70% dan rata-rata nilai kuis di bawah 60 cenderung memiliki risiko lebih tinggi mengalami kesulitan pada evaluasi akhir.</p>
+</blockquote>
+<p>Informasi tersebut dapat digunakan untuk:</p>
+<ul>
+<li>memberikan pendampingan;</li>
+<li>melakukan remedial;</li>
+<li>melakukan intervensi lebih awal;</li>
+<li>memantau perkembangan siswa;</li>
+<li>menyesuaikan strategi pembelajaran.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="learning-analytics" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Learning Analytics</h1>
+<section id="apa-itu-learning-analytics" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="apa-itu-learning-analytics"><span class="header-section-number">9.1</span> Apa Itu Learning Analytics?</h2>
+<p><strong>Learning Analytics</strong> berfokus pada pengumpulan, pengukuran, analisis, dan interpretasi data mengenai pembelajar dan proses pembelajaran untuk memahami serta meningkatkan pembelajaran.</p>
+<p>Secara sederhana:</p>
+<blockquote class="blockquote">
+<p><strong>Learning Analytics menggunakan data untuk memahami apa yang terjadi dalam proses belajar dan membantu menentukan tindakan yang tepat.</strong></p>
+</blockquote>
+<p>Contohnya, sebuah LMS menunjukkan bahwa:</p>
+<pre class="text"><code>20 siswa
+↓
+jarang mengakses materi
+↓
+nilai kuis rendah
+↓
+berpotensi mengalami kesulitan</code></pre>
+<p>Guru kemudian dapat:</p>
+<ol type="1">
+<li>memeriksa kondisi siswa;</li>
+<li>memberikan bantuan;</li>
+<li>memberikan materi tambahan;</li>
+<li>melakukan remedial;</li>
+<li>memantau perkembangan siswa.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="edm-dan-learning-analytics" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> EDM dan Learning Analytics</h1>
+<p>EDM dan Learning Analytics memiliki hubungan yang sangat dekat.</p>
+<p>Keduanya:</p>
+<ul>
+<li>menggunakan data pendidikan;</li>
+<li>dapat menggunakan teknik statistik;</li>
+<li>dapat menggunakan machine learning;</li>
+<li>dapat menggunakan data dari LMS;</li>
+<li>bertujuan menghasilkan informasi yang berguna untuk pendidikan.</li>
+</ul>
+<p>Namun, fokus keduanya dapat dibedakan.</p>
+<hr>
+</section>
+<section id="perbedaan-edm-dan-learning-analytics" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Perbedaan EDM dan Learning Analytics</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 35%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Aspek</th>
+<th style="text-align: left;">Educational Data Mining</th>
+<th style="text-align: left;">Learning Analytics</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Fokus utama</td>
+<td style="text-align: left;">Menemukan pola dan membangun model</td>
+<td style="text-align: left;">Memahami dan meningkatkan pembelajaran</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Orientasi</td>
+<td style="text-align: left;">Computational / model-driven</td>
+<td style="text-align: left;">Decision / action-oriented</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pertanyaan utama</td>
+<td style="text-align: left;">“Pola apa yang terdapat dalam data?”</td>
+<td style="text-align: left;">“Apa yang terjadi dalam pembelajaran dan apa yang perlu dilakukan?”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pendekatan</td>
+<td style="text-align: left;">Data mining dan machine learning</td>
+<td style="text-align: left;">Statistik, visualisasi, analitik, data mining, dan metode lainnya</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Model, cluster, aturan, prediksi</td>
+<td style="text-align: left;">Insight, dashboard, rekomendasi, intervensi</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pengguna</td>
+<td style="text-align: left;">Peneliti, data scientist, pengembang sistem</td>
+<td style="text-align: left;">Guru, dosen, sekolah, pengelola pendidikan</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Contoh</td>
+<td style="text-align: left;">Mengelompokkan siswa berdasarkan pola belajar</td>
+<td style="text-align: left;">Membantu guru memantau siswa yang membutuhkan bantuan</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Perlu diperhatikan bahwa batas antara EDM dan Learning Analytics tidak selalu tegas.</strong></p>
+</blockquote>
+<p>Learning Analytics dapat menggunakan teknik yang berasal dari EDM.</p>
+<hr>
+</section>
+<section id="analogi-edm-sebagai-detektif-data" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Analogi: EDM sebagai “Detektif Data”</h1>
+<p>Salah satu cara mudah untuk memahami EDM adalah dengan membayangkannya sebagai <strong>detektif data</strong>.</p>
+<p>Detektif data bertanya:</p>
+<blockquote class="blockquote">
+<p><strong>“Pola apa yang tersembunyi dalam data?”</strong></p>
+</blockquote>
+<p>Misalnya:</p>
+<blockquote class="blockquote">
+<p>“Ternyata terdapat tiga kelompok siswa berdasarkan pola aktivitas belajarnya.”</p>
+</blockquote>
+<p>EDM membantu menemukan pola tersebut.</p>
+<hr>
+</section>
+<section id="analogi-learning-analytics-sebagai-dokter-pendidikan" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Analogi: Learning Analytics sebagai “Dokter Pendidikan”</h1>
+<p>Learning Analytics dapat dianalogikan sebagai <strong>dokter pendidikan</strong>.</p>
+<p>Pertanyaannya:</p>
+<blockquote class="blockquote">
+<p><strong>“Apa yang sedang terjadi pada proses belajar siswa dan tindakan apa yang sebaiknya dilakukan?”</strong></p>
+</blockquote>
+<p>Misalnya:</p>
+<pre class="text"><code>Data siswa
+    ↓
+Analisis
+    ↓
+10 siswa menunjukkan tanda kesulitan belajar
+    ↓
+Guru melakukan pemeriksaan lebih lanjut
+    ↓
+Intervensi
+    ↓
+Pemantauan</code></pre>
+<p>Dengan demikian:</p>
+<blockquote class="blockquote">
+<p><strong>EDM membantu menemukan pola, sedangkan Learning Analytics membantu menggunakan data dan insight untuk memahami serta meningkatkan pembelajaran.</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="contoh-kasus-lms-di-sekolah-dasar" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Contoh Kasus: LMS di Sekolah Dasar</h1>
+<p>Bayangkan sebuah sekolah menggunakan LMS.</p>
+<p>Sekolah memiliki data:</p>
+<pre class="text"><code>Login
+Durasi belajar
+Jumlah halaman yang dibaca
+Jumlah video ditonton
+Nilai kuis
+Nilai tugas
+Nilai akhir</code></pre>
+<section id="jika-menggunakan-edm" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="jika-menggunakan-edm"><span class="header-section-number">14.1</span> Jika menggunakan EDM</h2>
+<p>Peneliti dapat menggunakan <strong>clustering</strong> untuk menemukan kelompok siswa.</p>
+<p>Misalnya:</p>
+<pre class="text"><code>Cluster 1
+Pembelajar aktif
+
+Cluster 2
+Pembelajar pasif
+
+Cluster 3
+Pembelajar tidak konsisten</code></pre>
+<p>Pertanyaan EDM:</p>
+<blockquote class="blockquote">
+<p><strong>“Apakah terdapat pola atau kelompok tertentu dalam perilaku belajar siswa?”</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="jika-menggunakan-learning-analytics" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="jika-menggunakan-learning-analytics"><span class="header-section-number">14.2</span> Jika menggunakan Learning Analytics</h2>
+<p>Guru menggunakan hasil analisis tersebut untuk:</p>
+<pre class="text"><code>Identifikasi siswa
+        ↓
+Memeriksa kondisi siswa
+        ↓
+Memberikan pendampingan
+        ↓
+Memantau perubahan</code></pre>
+<p>Pertanyaan Learning Analytics:</p>
+<blockquote class="blockquote">
+<p><strong>“Apa yang sedang terjadi pada pembelajaran siswa dan apa yang dapat dilakukan untuk memperbaikinya?”</strong></p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="dari-data-menjadi-tindakan" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Dari Data Menjadi Tindakan</h1>
+<p>Salah satu konsep penting dalam mata kuliah ini adalah:</p>
+<pre class="text"><code>DATA
+↓
+Informasi
+↓
+Pola
+↓
+Pengetahuan
+↓
+Insight
+↓
+Tindakan</code></pre>
+<p>Contoh:</p>
+<pre class="text"><code>Data
+↓
+Kehadiran, nilai kuis, aktivitas LMS
+↓
+Informasi
+↓
+Sebagian siswa memiliki aktivitas belajar rendah
+↓
+Pola
+↓
+Aktivitas rendah berkaitan dengan hasil belajar rendah
+↓
+Pengetahuan
+↓
+Siswa dengan pola tertentu membutuhkan perhatian
+↓
+Tindakan
+↓
+Intervensi pembelajaran</code></pre>
+<p>Tujuan akhir analisis data pendidikan bukan sekadar menghasilkan grafik atau model.</p>
+<blockquote class="blockquote">
+<p><strong>Tujuan akhirnya adalah menghasilkan informasi dan pengetahuan yang dapat membantu meningkatkan proses pembelajaran.</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="studi-kasus" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Studi Kasus</h1>
+<section id="kasus-siswa-dengan-nilai-matematika-rendah" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="kasus-siswa-dengan-nilai-matematika-rendah"><span class="header-section-number">16.1</span> Kasus: Siswa dengan Nilai Matematika Rendah</h2>
+<p>Sebuah sekolah dasar ingin mengetahui mengapa sebagian siswa memperoleh nilai matematika rendah.</p>
+<p>Sekolah memiliki data:</p>
+<ul>
+<li>nilai matematika;</li>
+<li>kehadiran;</li>
+<li>jumlah tugas yang dikumpulkan;</li>
+<li>nilai kuis;</li>
+<li>frekuensi penggunaan media pembelajaran digital.</li>
+</ul>
+<section id="pertanyaan" class="level3" data-number="16.1.1">
+<h3 data-number="16.1.1" class="anchored" data-anchor-id="pertanyaan"><span class="header-section-number">16.1.1</span> Pertanyaan</h3>
+<p><strong>1.</strong> Data apa saja yang tersedia?</p>
+<p><strong>2.</strong> Variabel apa yang dapat digunakan?</p>
+<p><strong>3.</strong> Pola apa yang mungkin dicari?</p>
+<p><strong>4.</strong> Apakah masalah tersebut dapat dianalisis menggunakan EDM?</p>
+<p><strong>5.</strong> Apakah Learning Analytics juga dapat digunakan?</p>
+<p><strong>6.</strong> Teknik data mining apa yang mungkin digunakan?</p>
+<p><strong>7.</strong> Tindakan apa yang dapat dilakukan guru berdasarkan hasil analisis?</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="aktivitas-kelompok" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> Aktivitas Kelompok</h1>
+<p>Bentuk kelompok kecil.</p>
+<p>Setiap kelompok memilih <strong>satu masalah pendidikan</strong> berikut:</p>
+<ol type="1">
+<li>siswa sering tidak mengerjakan tugas;</li>
+<li>siswa memperoleh nilai matematika rendah;</li>
+<li>siswa jarang membaca materi;</li>
+<li>siswa memiliki kehadiran rendah;</li>
+<li>siswa kurang aktif dalam pembelajaran digital.</li>
+</ol>
+<p>Kemudian lengkapi tabel berikut.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Komponen</th>
+<th style="text-align: left;">Jawaban Kelompok</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Masalah pendidikan</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Data yang diperlukan</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Variabel yang tersedia</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pola yang ingin ditemukan</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Teknik data mining yang mungkin digunakan</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Insight yang diharapkan</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tindakan yang mungkin dilakukan guru</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<section id="pertanyaan-tambahan" class="level3" data-number="17.0.1">
+<h3 data-number="17.0.1" class="anchored" data-anchor-id="pertanyaan-tambahan"><span class="header-section-number">17.0.1</span> Pertanyaan tambahan</h3>
+<blockquote class="blockquote">
+<p>Apakah kelompok Anda lebih tepat menggunakan <strong>EDM</strong>, <strong>Learning Analytics</strong>, atau <strong>keduanya</strong>?</p>
+</blockquote>
+<p>Jelaskan alasannya.</p>
+<hr>
+</section>
+</section>
+<section id="latihan-edm-atau-learning-analytics" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> Latihan: EDM atau Learning Analytics?</h1>
+<p>Tentukan apakah setiap aktivitas berikut lebih dekat dengan <strong>EDM</strong>, <strong>Learning Analytics</strong>, atau <strong>keduanya</strong>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 63%">
+<col style="width: 3%">
+<col style="width: 22%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Aktivitas</th>
+<th style="text-align: center;">EDM</th>
+<th style="text-align: center;">Learning Analytics</th>
+<th style="text-align: center;">Keduanya</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mengelompokkan siswa berdasarkan pola belajar</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Membuat dashboard perkembangan siswa</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Memprediksi siswa yang berisiko gagal</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Menemukan pola hubungan antara kehadiran dan nilai</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Memberikan rekomendasi intervensi kepada guru</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Memantau perkembangan siswa dari waktu ke waktu</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<section id="diskusikan" class="level3" data-number="18.0.1">
+<h3 data-number="18.0.1" class="anchored" data-anchor-id="diskusikan"><span class="header-section-number">18.0.1</span> Diskusikan</h3>
+<p>Tidak semua jawaban harus mutlak.</p>
+<p>Jelaskan <strong>mengapa</strong> suatu aktivitas dapat masuk ke EDM, Learning Analytics, atau keduanya.</p>
+<hr>
+</section>
+</section>
+<section id="pertanyaan-refleksi" class="level1" data-number="19">
+<h1 data-number="19"><span class="header-section-number">19</span> Pertanyaan Refleksi</h1>
+<p>Bayangkan Anda menjadi guru kelas V MI.</p>
+<p>Anda memiliki data seluruh siswa selama satu semester.</p>
+<blockquote class="blockquote">
+<p><strong>Pertanyaan apa yang ingin Anda jawab menggunakan data tersebut?</strong></p>
+</blockquote>
+<p>Tuliskan minimal <strong>tiga pertanyaan</strong>.</p>
+<p>Contoh:</p>
+<ul>
+<li>Apakah kehadiran berkaitan dengan hasil belajar?</li>
+<li>Siswa mana yang membutuhkan pendampingan?</li>
+<li>Apakah terdapat kelompok siswa dengan pola belajar yang sama?</li>
+<li>Apakah aktivitas digital berkaitan dengan hasil belajar?</li>
+</ul>
+<hr>
+<!-- # Konsep yang Harus Diingat -->
+<!-- Pada akhir pertemuan, mahasiswa diharapkan memahami lima konsep utama. -->
+<!-- ## Data Mining -->
+<!-- Proses menemukan pola atau informasi berguna dari data. -->
+<!-- ## Educational Data Mining -->
+<!-- Penerapan teknik data mining pada data pendidikan. -->
+<!-- ## 3. KDD -->
+<!-- Proses menemukan pengetahuan dari data melalui tahapan: -->
+<!-- **Selection → Preprocessing → Transformation → Data Mining → Evaluation → Knowledge** -->
+<!-- ## 4. Learning Analytics -->
+<!-- Penggunaan data dan analitik untuk memahami serta meningkatkan proses pembelajaran. -->
+<!-- ## 5. EDM dan Learning Analytics Beririsan -->
+<!-- Perbedaan sederhana: -->
+<!-- > **EDM lebih berorientasi pada penemuan pola dan model dari data, sedangkan Learning Analytics lebih berorientasi pada pemahaman proses pembelajaran dan penggunaan insight untuk tindakan.** -->
+<!-- --- -->
+</section>
+<section id="exit-ticket" class="level1" data-number="20">
+<h1 data-number="20"><span class="header-section-number">20</span> Exit Ticket</h1>
+<p>Sebelum meninggalkan kelas, jawab tiga pertanyaan berikut secara singkat.</p>
+<section id="pertanyaan-1" class="level3" data-number="20.0.1">
+<h3 data-number="20.0.1" class="anchored" data-anchor-id="pertanyaan-1"><span class="header-section-number">20.0.1</span> Pertanyaan 1</h3>
+<p>Apa yang dimaksud dengan <strong>Educational Data Mining (EDM)</strong>?</p>
+</section>
+<section id="pertanyaan-2" class="level3" data-number="20.0.2">
+<h3 data-number="20.0.2" class="anchored" data-anchor-id="pertanyaan-2"><span class="header-section-number">20.0.2</span> Pertanyaan 2</h3>
+<p>Mengapa <strong>data mining hanya merupakan salah satu tahap dalam KDD</strong>?</p>
+</section>
+<section id="pertanyaan-3" class="level3" data-number="20.0.3">
+<h3 data-number="20.0.3" class="anchored" data-anchor-id="pertanyaan-3"><span class="header-section-number">20.0.3</span> Pertanyaan 3</h3>
+<p>Jelaskan perbedaan EDM dan Learning Analytics menggunakan <strong>satu contoh kasus pendidikan</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="rangkuman" class="level1" data-number="21">
+<h1 data-number="21"><span class="header-section-number">21</span> Rangkuman</h1>
+<p>Alur konsep yang perlu dipahami:</p>
+<pre class="text"><code>Data Pendidikan
+       ↓
+   Data Mining
+       ↓
+      KDD
+       ↓
+      EDM
+       ↓
+Learning Analytics
+       ↓
+Pola &amp; Insight
+       ↓
+Pemahaman Pembelajaran
+       ↓
+Tindakan / Intervensi</code></pre>
+<p>Data pendidikan dapat menjadi sangat bernilai ketika tidak hanya dikumpulkan, tetapi <strong>dianalisis untuk menemukan pola, menghasilkan pengetahuan, dan mendukung pengambilan keputusan dalam pembelajaran</strong>.</p>
+<p>Pada pertemuan berikutnya, kita akan mulai masuk ke <strong>data dan karakteristiknya dalam proses data mining</strong>, termasuk bagaimana data direpresentasikan dan dipersiapkan sebelum dianalisis.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

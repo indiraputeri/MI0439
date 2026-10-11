@@ -1,0 +1,713 @@
+---
+title: "Data Pendidikan: Jenis & Preprocessing"
+subtitle: "Data Mining (MI0439)"
+author: Dr. Indira Puteri Kinasih
+lang: id
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: false
+    html-math-method: katex
+    theme: cosmo
+  
+  pdf:
+    toc: true
+    toc-depth: 3
+    number-sections: false
+---
+
+\newpage
+
+## Capaian Pembelajaran
+
+Setelah mengikuti pertemuan ini, mahasiswa diharapkan mampu:
+
+* mengidentifikasi berbagai jenis data dalam konteks pendidikan;
+* membedakan data numerik dan kategorik;
+* menjelaskan karakteristik data yang baik untuk analisis;
+* mengidentifikasi masalah kualitas data;
+* menjelaskan konsep *data preprocessing*;
+* melakukan *data cleaning* sederhana;
+* menjelaskan konsep *missing value* dan cara menanganinya;
+* memahami pentingnya preprocessing sebelum menerapkan metode data mining.
+
+
+# Mengapa Data Perlu Dipersiapkan?
+
+Pada pertemuan sebelumnya telah dibahas bahwa **Educational Data Mining (EDM)** menggunakan data pendidikan untuk menemukan pola yang berguna.
+
+Namun, data yang tersedia di dunia nyata biasanya **tidak langsung siap dianalisis**.
+
+Contohnya:
+
+| Siswa | Kehadiran | Nilai Kuis | Akses LMS | Status      |
+| :---- | --------: | ---------: | --------: | :---------- |
+| Ahmad |        95 |         85 |        20 | Aktif       |
+| Budi  |        90 |         80 |        15 | Aktif       |
+| Citra |           |         65 |         8 | Aktif       |
+| Deni  |       105 |         70 |           | Aktif       |
+| Evi   |        75 |            |         5 | Tidak Aktif |
+
+Perhatikan beberapa masalah:
+
+* terdapat nilai yang kosong;
+* kehadiran **105%** tidak masuk akal;
+* terdapat perbedaan karakteristik siswa;
+* beberapa variabel memiliki skala berbeda;
+* data belum tentu memiliki format yang sesuai untuk algoritma.
+
+
+:::{.callout-note}
+
+> Karena itu, sebelum melakukan data mining, kita perlu melakukan **data preprocessing**.
+**Garbage in, garbage out.**
+Jika data yang digunakan buruk, hasil analisis juga berpotensi buruk.
+
+:::
+
+
+# Data Pendidikan
+
+Data pendidikan adalah data yang dikumpulkan dari proses, aktivitas, dan lingkungan pendidikan.
+
+Contohnya:
+
+| Jenis Data                   | Contoh                                                                |
+| :--------------------------- | :-------------------------------------------------------------------- |
+| **Data akademik**            | Nilai tugas, kuis, UTS, UAS, nilai mata pelajaran, nilai remedial     |
+| **Data kehadiran**           | Kehadiran, ketidakhadiran, keterlambatan                              |
+| **Data aktivitas belajar**   | Materi yang dibaca, video ditonton, latihan dikerjakan, waktu belajar |
+| **Data interaksi**           | Diskusi, komentar, forum, interaksi dengan guru, aktivitas kolaborasi |
+| **Data karakteristik siswa** | Kelas, usia, jenis kelamin, karakteristik akademik                    |
+| **Data sekolah**             | Kelas, guru, fasilitas, jumlah siswa, karakteristik sekolah           |
+| **Data digital**             | Login LMS, klik materi, durasi akses, aktivitas kuis                  |
+
+
+## Struktur Data
+
+Data biasanya disusun dalam bentuk **baris dan kolom**.
+
+Misalnya:
+
+| Siswa | Kehadiran | Nilai Kuis | Nilai UTS | Akses LMS |
+| :---- | --------: | ---------: | --------: | --------: |
+| Ahmad |        95 |         85 |        88 |        20 |
+| Budi  |        90 |         80 |        82 |        15 |
+| Citra |        70 |         65 |        60 |         8 |
+| Deni  |        85 |         75 |        70 |        12 |
+| Evi   |        75 |         60 |        58 |         5 |
+
+Dalam data mining:
+
+* **baris** biasanya merepresentasikan *observasi*;
+* **kolom** merepresentasikan *variabel* atau *atribut*.
+
+Pada contoh tersebut:
+
+> Satu baris = satu siswa
+
+sedangkan:
+
+> Satu kolom = satu karakteristik siswa.
+
+
+## Variabel Numerik
+
+Variabel numerik memiliki nilai berupa angka yang dapat digunakan dalam operasi matematika.
+
+Contoh:
+
+| Variabel       | Contoh   |
+| :------------- | :------- |
+| Usia           | 11 tahun |
+| Nilai          | 85       |
+| Kehadiran      | 95%      |
+| Jumlah tugas   | 12       |
+| Durasi belajar | 45 menit |
+| Jumlah login   | 20       |
+
+Variabel numerik dapat dibedakan menjadi:
+
+**Diskrit**
+
+Nilainya biasanya berupa hitungan.
+
+Contoh:
+
+* jumlah tugas;
+* jumlah login;
+* jumlah ketidakhadiran.
+
+**Kontinu**
+
+Nilainya dapat berada pada suatu rentang.
+
+Contoh:
+
+* waktu belajar;
+* tinggi badan;
+* berat badan.
+
+
+## Variabel Kategorik
+
+Variabel kategorik menunjukkan kelompok atau kategori.
+
+Contoh:
+
+| Variabel       | Kategori                    |
+| :------------- | :-------------------------- |
+| Jenis kelamin  | Laki-laki, Perempuan        |
+| Kelas          | IV, V, VI                   |
+| Status siswa   | Aktif, Tidak Aktif          |
+| Tingkat risiko | Rendah, Sedang, Tinggi      |
+| Jenis sekolah  | MI, SD                      |
+| Metode belajar | Tatap muka, Daring, Blended |
+
+Data kategorik tidak selalu dapat diperlakukan sebagai angka.
+
+Misalnya:
+
+```text
+Laki-laki = 1
+Perempuan = 2
+```
+
+Angka 1 dan 2 tersebut hanya merupakan **kode**, bukan berarti perempuan memiliki nilai "lebih tinggi" daripada laki-laki.
+
+
+## Skala pengukuran data
+
+Jenis data juga dapat dilihat berdasarkan skala pengukuran.
+
+| Skala        | Karakteristik             | Contoh Pendidikan                    |
+| :----------- | :------------------------ | :----------------------------------- |
+| **Nominal**  | Kategori tanpa urutan     | Jenis kelamin, jenis sekolah         |
+| **Ordinal**  | Kategori memiliki urutan  | Rendah, sedang, tinggi               |
+| **Interval** | Jarak antarnilai bermakna | Skor tertentu yang berskala interval |
+| **Rasio**    | Memiliki nol absolut      | Usia, jumlah tugas, waktu belajar    |
+
+Pemahaman mengenai skala pengukuran penting karena akan memengaruhi **cara data dianalisis**.
+
+
+## Masalah Kualitas Data
+
+Data pendidikan dapat memiliki berbagai masalah.
+
+| Masalah                | Contoh                                             |
+| :--------------------- | :------------------------------------------------- |
+| **Missing value**      | Nilai kuis kosong                                  |
+| **Duplikasi**          | Data siswa tercatat dua kali                       |
+| **Inconsistent value** | "Laki-laki", "L", "Pria"                           |
+| **Invalid value**      | Kehadiran 105%                                     |
+| **Typo**               | "Matemtika"                                        |
+| **Format berbeda**     | 12/08/2026 dan 2026-08-12                          |
+| **Outlier**            | Nilai yang sangat berbeda dari sebagian besar data |
+
+Masalah-masalah tersebut perlu diperiksa sebelum data digunakan untuk pemodelan.
+
+# Preprocessing dalam EDM
+
+Preprocessing adalah tahap menyiapkan data sebelum digunakan dalam analisis atau
+algoritma data mining. Data pendidikan yang diperoleh dari sekolah, LMS,
+kuesioner, atau sistem akademik sering kali belum siap digunakan karena
+mengandung data ganda, nilai yang tidak valid, format yang tidak konsisten,
+atau data yang hilang.
+
+Tujuan preprocessing adalah menghasilkan data yang:
+
+- **bersih** — kesalahan dan duplikasi ditangani;
+- **konsisten** — format dan kategori memiliki bentuk yang seragam;
+- **lengkap** — missing value ditangani dengan cara yang sesuai;
+- **valid** — nilai berada pada rentang atau kategori yang seharusnya;
+- **siap dianalisis** — struktur data sesuai dengan metode yang akan digunakan.
+
+Secara sederhana, alurnya dapat digambarkan sebagai:
+
+**Data mentah → Identifikasi masalah → Cleaning → Penanganan missing value
+→ Transformasi → Data siap dianalisis**
+
+## Data Cleaning
+
+Data cleaning merupakan proses menemukan dan menangani masalah pada data.
+Dalam EDM, beberapa masalah yang umum ditemukan adalah:
+
+| Masalah | Contoh | Penanganan |
+|:--|:--|:--|
+| Duplikasi | Siswa tercatat dua kali | Identifikasi dan hapus duplikasi |
+| Invalid value | Nilai ujian = 150 | Periksa dan koreksi/hapus |
+| Format tidak konsisten | `L`, `Laki-laki`, `laki laki` | Samakan kategori |
+| Typo | `Perempuan`, `Perempaun` | Koreksi kategori |
+| Missing value | Nilai kuis kosong | Analisis dan tentukan metode penanganan |
+| Outlier | Waktu belajar = 999 jam | Periksa kewajaran dan sumber data |
+
+## Mengapa Preprocessing Penting?
+
+Bayangkan kita ingin menggunakan data siswa untuk memprediksi apakah seorang
+siswa berisiko mengalami kesulitan belajar.
+
+Jika data yang digunakan masih mengandung nilai ujian yang salah, kehadiran
+yang tidak konsisten, atau missing value yang ditangani secara sembarangan,
+maka hasil model dapat menjadi tidak akurat.
+
+Dengan demikian:
+
+> **Kualitas hasil data mining sangat dipengaruhi oleh kualitas data yang
+> digunakan.**
+
+Preprocessing juga harus dilakukan dengan hati-hati. Tidak semua data yang
+aneh harus langsung dihapus. Data yang tampak tidak biasa perlu diperiksa
+terlebih dahulu untuk menentukan apakah merupakan kesalahan pencatatan,
+kejadian yang memang terjadi, atau informasi yang justru penting.
+
+## Tahapan Preprocessing dalam EDM
+
+Preprocessing dapat dilakukan melalui beberapa tahap:
+
+1. **Memahami data**  
+   Mengenali variabel, tipe data, jumlah observasi, dan sumber data.
+
+2. **Memeriksa kualitas data**  
+   Mencari duplikasi, nilai tidak valid, format tidak konsisten, dan missing
+   value.
+
+3. **Melakukan data cleaning**  
+   Memperbaiki atau menangani masalah yang ditemukan.
+
+4. **Menangani missing value**  
+   Menentukan apakah data dihapus, diimputasi, atau dipertahankan sebagai
+   informasi.
+
+5. **Melakukan transformasi bila diperlukan**  
+   Misalnya mengubah kategori menjadi kode numerik atau mengubah format data
+   agar sesuai dengan analisis.
+
+6. **Memeriksa kembali data**  
+   Memastikan data setelah preprocessing tetap masuk akal dan sesuai dengan
+   tujuan analisis.
+
+## Prinsip Penting
+
+Preprocessing bukan berarti membuat data menjadi "sempurna", tetapi membuat
+data **layak digunakan untuk tujuan analisis tertentu**.
+
+Metode preprocessing yang digunakan juga bergantung pada jenis data dan tujuan
+data mining.
+
+
+## *Data Cleaning*
+
+**Data cleaning** adalah proses mendeteksi dan memperbaiki masalah dalam data.
+
+Tujuannya adalah menghasilkan data yang:
+
+* lebih akurat;
+* konsisten;
+* lengkap;
+* relevan;
+* dan siap digunakan untuk analisis.
+
+Contoh:
+
+| Sebelum Cleaning | Setelah Cleaning |
+| :--------------- | :--------------- |
+| L                | Laki-laki        |
+| Pria             | Laki-laki        |
+| P                | Perempuan        |
+| Perempuan        | Perempuan        |
+| Matemtika        | Matematika       |
+| Matematika       | Matematika       |
+
+Data yang memiliki kategori berbeda tetapi memiliki makna yang sama perlu diseragamkan.
+
+
+## Duplikasi Data
+
+Misalkan terdapat:
+
+| ID  | Nama  | Kelas | Nilai |
+| :-- | :---- | :---- | ----: |
+| 001 | Ahmad | V     |    80 |
+| 002 | Budi  | V     |    75 |
+| 003 | Ahmad | V     |    80 |
+| 004 | Citra | V     |    90 |
+
+Apakah Ahmad merupakan dua siswa?
+
+Belum tentu.
+
+Kemungkinan data Ahmad tercatat dua kali.
+
+Jika memang merupakan duplikasi, salah satu baris perlu dihapus.
+
+> **Duplikasi dapat menyebabkan jumlah observasi menjadi tidak benar dan memengaruhi hasil analisis.**
+
+
+## Invalid Value
+
+Data juga dapat mengandung nilai yang secara logika tidak mungkin.
+
+Contoh:
+
+| Variabel     |     Nilai | Masalah                 |
+| :----------- | --------: | :---------------------- |
+| Kehadiran    |      105% | Tidak mungkin           |
+| Usia         | 250 tahun | Tidak masuk akal        |
+| Nilai        |       150 | Jika skala maksimum 100 |
+| Jumlah tugas |        -5 | Tidak mungkin           |
+
+Nilai seperti ini perlu diperiksa.
+
+Namun, jangan langsung menghapusnya.
+
+Pertama-tama tanyakan:
+
+> **Apakah nilai tersebut benar-benar salah atau ada penjelasan lain?**
+
+
+## Missing Value
+
+**Missing value** adalah kondisi ketika nilai suatu variabel tidak tersedia untuk suatu observasi.
+
+Contoh:
+
+| Siswa | Kehadiran | Nilai Kuis | Nilai UAS |
+| :---- | --------: | ---------: | --------: |
+| Ahmad |        95 |         85 |        88 |
+| Budi  |        90 |         80 |        82 |
+| Citra |        70 |     **NA** |        60 |
+| Deni  |    **NA** |         75 |        70 |
+| Evi   |        75 |         60 |    **NA** |
+
+`NA` dapat menunjukkan bahwa data tidak tersedia.
+
+Missing value merupakan masalah penting karena banyak algoritma data mining tidak dapat bekerja langsung dengan data yang kosong.
+
+
+### Mengapa Missing Value Terjadi?
+
+Missing value dapat terjadi karena berbagai alasan.
+
+| Penyebab                    | Contoh                                      |
+| :-------------------------- | :------------------------------------------ |
+| Data tidak dikumpulkan      | Nilai kuis tidak tersedia                   |
+| Siswa tidak mengikuti ujian | Nilai UTS kosong                            |
+| Kesalahan input             | Data tidak tersimpan                        |
+| Responden tidak menjawab    | Kuesioner kosong                            |
+| Masalah sistem              | Data LMS gagal direkam                      |
+| Tidak relevan               | Variabel tertentu tidak berlaku untuk siswa |
+
+Karena penyebabnya berbeda, **cara menangani missing value juga tidak selalu sama**.
+
+
+### Cara Menangani Missing Value
+
+Beberapa pendekatan yang umum digunakan:
+
+| Pendekatan                 | Penjelasan                                                 |
+| :------------------------- | :--------------------------------------------------------- |
+| **Menghapus observasi**    | Baris dengan missing value dihapus                         |
+| **Menghapus variabel**     | Variabel dengan terlalu banyak missing dihapus             |
+| **Mean imputation**        | Missing diganti dengan rata-rata                           |
+| **Median imputation**      | Missing diganti dengan median                              |
+| **Mode imputation**        | Missing kategorik diganti dengan modus                     |
+| **Model-based imputation** | Nilai diperkirakan menggunakan model                       |
+| **Multiple imputation**    | Missing diimputasi menggunakan beberapa nilai yang mungkin |
+
+Tidak ada satu metode yang selalu paling baik.
+
+Pemilihan metode bergantung pada:
+
+* jumlah missing value;
+* pola missing;
+* jenis variabel;
+* tujuan analisis;
+* karakteristik data.
+
+---
+
+### Contoh Mean Imputation
+
+Misalkan nilai kuis:
+
+```text
+80
+70
+90
+NA
+60
+```
+
+Rata-rata nilai yang tersedia:
+
+$$
+\bar{x} = \frac{80+70+90+60}{4}=75
+$$
+
+Maka:
+
+```text
+80
+70
+90
+75
+60
+```
+
+Nilai `NA` diganti dengan **75**.
+
+Namun, metode ini memiliki kelemahan karena dapat mengurangi variasi data.
+
+
+### Contoh Median Imputation
+
+Misalkan:
+
+```text
+50
+60
+70
+80
+NA
+```
+
+Median data yang tersedia adalah:
+
+$$
+\text{Median}=65
+$$
+
+Maka:
+
+```text
+50
+60
+70
+80
+65
+```
+
+Median sering dipertimbangkan ketika data memiliki **outlier** atau distribusi yang tidak simetris.
+
+
+### Apakah Missing Value Boleh Langsung Dihapus?
+
+Tidak selalu.
+
+Misalnya kita memiliki data:
+
+> 1.000 siswa
+
+dan hanya 5 siswa yang tidak memiliki nilai kuis.
+
+Menghapus 5 observasi mungkin tidak terlalu bermasalah.
+
+Tetapi jika:
+
+> 400 dari 1.000 siswa tidak memiliki nilai kuis,
+
+menghapus seluruh baris dapat menyebabkan kehilangan informasi yang sangat besar.
+
+Karena itu, sebelum menghapus missing value, perlu ditanyakan:
+
+> **Berapa banyak data yang hilang?**
+
+dan
+
+> **Mengapa data tersebut hilang?**
+
+
+### Missing Value sebagai Informasi
+
+Missing value terkadang justru memiliki makna.
+
+Misalnya dalam data pendidikan:
+
+> Siswa yang tidak memiliki nilai ujian mungkin bukan karena data hilang secara acak, tetapi karena siswa tersebut tidak mengikuti ujian.
+
+Jika semua nilai tersebut langsung diganti dengan rata-rata, informasi penting dapat hilang.
+
+Karena itu:
+
+> **Missing value bukan sekadar masalah teknis, tetapi juga dapat mengandung informasi tentang proses pengumpulan data.**
+
+
+# Contoh kasus sederhana
+
+Misalkan kita mendapatkan data:
+
+| Siswa | Kehadiran | Nilai | Jenis Kelamin |
+| :---- | --------: | ----: | :------------ |
+| Ahmad |        95 |    85 | L             |
+| Budi  |        90 |    NA | L             |
+| Citra |       105 |    75 | P             |
+| Deni  |        80 |    70 | L             |
+| Evi   |        NA |    65 | Perempuan     |
+
+Kita menemukan:
+
+* `NA` pada nilai;
+* `NA` pada kehadiran;
+* kehadiran 105%;
+* kategori jenis kelamin tidak konsisten.
+
+Setelah preprocessing, misalnya:
+
+| Siswa | Kehadiran | Nilai | Jenis Kelamin |
+| :---- | --------: | ----: | :------------ |
+| Ahmad |        95 |    85 | Laki-laki     |
+| Budi  |        90 |    75 | Laki-laki     |
+| Citra |       100 |    75 | Perempuan     |
+| Deni  |        80 |    70 | Laki-laki     |
+| Evi   |        89 |    65 | Perempuan     |
+
+Data sekarang lebih siap digunakan dalam analisis.
+
+**Catatan:** nilai hasil imputasi di atas hanya ilustrasi.
+
+
+## *Mini Case*: Data Nilai Siswa
+
+Perhatikan data berikut.
+
+| Siswa | Kehadiran | Tugas | Kuis | UTS |
+| :---- | --------: | ----: | ---: | --: |
+| A     |        95 |    90 |   85 |  88 |
+| B     |        90 |    80 |   75 |  82 |
+| C     |           |    70 |   65 |  60 |
+| D     |       105 |    85 |   80 |  78 |
+| E     |        80 |       |   60 |  65 |
+| F     |        75 |    60 |   55 |  50 |
+
+### Pertanyaan
+
+Identifikasi:
+
+* variabel numerik;
+* variabel kategorik jika ada;
+* missing value;
+* invalid value;
+* kemungkinan masalah lain.
+
+Kemudian diskusikan:
+
+> **Apa yang harus dilakukan terhadap setiap masalah tersebut sebelum data digunakan untuk data mining?**
+
+
+## Aktivitas Kelompok
+
+Kegiatan: Setiap kelompok akan mendapatkan sebuah dataset pendidikan sederhana.
+
+Tugas kelompok:
+
+| Tahapan      | Pertanyaan                                   |
+| :----------- | :------------------------------------------- |
+| Identifikasi | Data apa saja yang tersedia?                 |
+| Struktur     | Mana observasi dan mana variabel?            |
+| Tipe data    | Mana yang numerik dan kategorik?             |
+| Cleaning     | Apakah terdapat data yang tidak konsisten?   |
+| Missing      | Apakah terdapat missing value?               |
+| Validitas    | Apakah terdapat nilai yang tidak masuk akal? |
+| Solusi       | Bagaimana setiap masalah akan ditangani?     |
+
+Setiap kelompok kemudian menjelaskan **alasan** di balik keputusan preprocessing yang mereka ambil.
+
+
+# Diskusi
+
+Perhatikan dua situasi berikut.
+
+## Situasi A
+
+Dari 1.000 siswa, hanya 5 siswa yang tidak memiliki nilai kuis.
+
+## Situasi B
+
+Dari 1.000 siswa, 400 siswa tidak memiliki nilai kuis.
+
+Apakah keduanya sebaiknya ditangani dengan cara yang sama?
+
+**Mengapa?**
+
+
+## Kesalahan yang Sering Terjadi
+
+Beberapa kesalahan umum dalam preprocessing:
+
+> **Menghapus semua baris yang memiliki missing value tanpa memeriksa jumlahnya.**
+
+> **Mengganti semua missing value dengan rata-rata tanpa memahami penyebab missing.**
+
+> **Menghapus outlier hanya karena nilainya terlihat berbeda.**
+
+> **Menganggap angka sebagai data numerik tanpa melihat maknanya.**
+
+> **Melakukan preprocessing tanpa mempertimbangkan tujuan analisis.**
+
+Preprocessing bukan sekadar "membersihkan data", tetapi merupakan bagian dari proses analisis yang membutuhkan pertimbangan.
+
+
+## Hubungan dengan Pertemuan Sebelumnya
+
+Pada pertemuan pertama kita membahas:
+
+```text
+Data Pendidikan
+       ↓
+KDD
+       ↓
+Data Mining
+       ↓
+Pola / Pengetahuan
+```
+
+Sekarang kita melihat bahwa terdapat tahapan penting sebelum data mining:
+
+```text
+Data Pendidikan
+       ↓
+Selection
+       ↓
+Preprocessing
+       ↓
+Transformation
+       ↓
+Data Mining
+       ↓
+Evaluation
+       ↓
+Knowledge
+```
+
+Dengan demikian:
+
+> **Kualitas hasil data mining sangat dipengaruhi oleh kualitas data yang digunakan.**
+
+
+# Inti Pembelajaran
+
+Hal-hal yang perlu diingat:
+
+| Konsep                   | Inti                                                               |
+| :----------------------- | :----------------------------------------------------------------- |
+| **Data pendidikan**      | Data yang dihasilkan dari proses dan lingkungan pendidikan         |
+| **Data numerik**         | Data yang direpresentasikan dalam bentuk angka                     |
+| **Data kategorik**       | Data yang menunjukkan kategori atau kelompok                       |
+| **Data cleaning**        | Proses memperbaiki masalah kualitas data                           |
+| **Missing value**        | Nilai yang tidak tersedia                                          |
+| **Preprocessing**        | Serangkaian proses menyiapkan data sebelum analisis                |
+| **Tujuan preprocessing** | Menghasilkan data yang lebih valid, konsisten, dan siap dianalisis |
+
+
+## *Exit Ticket*
+
+Jawab secara singkat:
+
+**Apa perbedaan antara data cleaning dan data preprocessing?**
+
+**Mengapa missing value tidak boleh langsung dihapus tanpa diperiksa terlebih dahulu?**
+
+**Sebutkan tiga masalah kualitas data yang mungkin ditemukan dalam data pendidikan.**
+
+**Jika Anda memiliki data 1.000 siswa dan 5% nilai kuis hilang, apa yang akan Anda lakukan? Jelaskan alasannya.**

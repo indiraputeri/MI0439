@@ -1,0 +1,462 @@
+---
+title: ""
+subtitle: ""
+author: ""
+format:
+  pdf:
+    documentclass: article
+    include-in-header:
+      text: |
+        \usepackage{pdflscape}
+        \usepackage{longtable}
+        \usepackage{booktabs}
+        \usepackage{longtable}
+        \usepackage{array}
+        \usepackage{makecell}
+        \usepackage{tabularx}
+    toc: false
+    number-sections: false
+    geometry:
+      - top=2.5cm
+      - bottom=2.5cm
+      - left=2.5cm
+      - right=2.5cm
+fontsize: 11pt
+lang: id
+---
+
+\begin{center}
+
+{\Large\bfseries RENCANA PEMBELAJARAN SEMESTER}
+
+\end{center}
+
+\vspace{0.8cm}
+
+\hrule
+
+\vspace{0.4cm}
+
+\begin{tabular}{p{4cm}p{0.3cm}p{10cm}}
+Mata Kuliah & : & \textbf{Data Mining} \\
+Kode Mata Kuliah & : & MI0339 \\
+Program Studi & : & Pendidikan Guru Madrasah Ibtidaiyah \\
+Rumpun Mata Kuliah & : & - \\
+Mata Kuliah Prasyarat & : & Metodologi Penelitian Pendidikan \\
+Bobot SKS & : & 2 SKS (2 Teori, 0 Praktik) \\
+Semester & : & VII \\
+Tahun Akademik & : & 2026/2027 \\
+Dosen Pengampu & : & Dr. Indira Puteri Kinasih \\
+Tanggal Penyusunan & : & 5 Juni 2026 \\
+Mulai Berlaku & : & Agustus 2026 \\
+\end{tabular}
+
+\vspace{0.4cm}
+
+\hrule
+
+\vspace{1cm}
+
+
+# Deskripsi
+
+Mata kuliah \textit{Data Mining} pada konteks ini membahas konsep, metode, dan penerapan analisis data dalam bidang pendidikan untuk mendukung (calon) guru dalam pengambilan keputusan berbasis data. Mahasiswa mempelajari proses pengumpulan, pembersihan, eksplorasi, visualisasi, dan interpretasi data pendidikan menggunakan perangkat lunak yang sesuai. Fokus pembelajaran diarahkan pada pemanfaatan data untuk meningkatkan kualitas pembelajaran, asesmen, serta layanan pendidikan di sekolah dan madrasah.
+
+# Capaian Pembelajaran Lulusan (CPL)
+
+| Kode CPL | Deskripsi |
+|-----------|-----------|
+| CPL-1 | Mampu menerapkan pemikiran logis, kritis, sistematis, dan inovatif dalam bidang pendidikan. |
+| CPL-2 | Mampu memanfaatkan teknologi informasi untuk mendukung pembelajaran dan pengelolaan pendidikan. |
+| CPL-3 | Mampu melakukan analisis data pendidikan untuk pengambilan keputusan. |
+| CPL-4 | Mampu berkomunikasi dan menyajikan informasi secara efektif. |
+
+# Capaian Pembelajaran Mata Kuliah (CPMK)
+
+| Kode | CPMK |
+|--------|--------|
+| CPMK 1 | Menjelaskan konsep, ruang lingkup, dan manfaat Educational Data Mining. |
+| CPMK 2 | Mengidentifikasi berbagai sumber dan karakteristik data pendidikan. |
+| CPMK 3 | Melakukan persiapan dan pembersihan data pendidikan. |
+| CPMK 4 | Melakukan analisis eksploratif dan visualisasi data pendidikan sederhana. |
+| CPMK 5 | Menginterpretasikan hasil analisis data untuk mendukung pengambilan keputusan pendidikan. |
+| CPMK 6 | Menyusun laporan dan proyek sederhana berbasis data pendidikan. |
+
+# Bahan Kajian
+
+1. Konsep dasar Educational Data Mining
+2. Data pendidikan dan sumber data
+3. Etika penggunaan data pendidikan
+4. Data preprocessing
+5. Statistik deskriptif
+6. Visualisasi data
+7. Analisis pola belajar siswa
+8. Learning analytics
+9. Prediksi dan klasifikasi sederhana
+10. Interpretasi hasil analisis
+11. Penyusunan laporan berbasis data
+12. Studi kasus Educational Data Mining
+
+\newpage
+
+
+
+\begin{landscape}
+
+\subsection{Rencana Pembelajaran Semester}
+
+\small
+
+\small
+
+\renewcommand{\arraystretch}{1.15}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+
+\begin{longtable}{
+|C{0.8cm}
+|L{3cm}
+|L{3.5cm}
+|L{2.5cm}
+|L{4cm}
+|L{3.5cm}
+|L{2.5cm}
+|C{1cm}|
+}
+
+\hline
+
+\multicolumn{1}{|C{0.8cm}|}{\textbf{Pert*}} &
+\multicolumn{1}{C{3cm}|}{\textbf{Sub-CPMK}} &
+\multicolumn{1}{C{3.5cm}|}{\textbf{Materi}} &
+\multicolumn{1}{C{2.5cm}|}{\textbf{Metode}} &
+\multicolumn{1}{C{4cm}|}{\textbf{Pengalaman Belajar}} &
+\multicolumn{1}{C{3.5cm}|}{\textbf{Indikator Penilaian}} &
+\multicolumn{1}{C{2.5cm}|}{\textbf{Bentuk Penilaian}} &
+\multicolumn{1}{C{1cm}|}{\textbf{Bobot}} \\
+\hline
+\endhead
+
+1 &
+Menjelaskan ruang lingkup EDM &
+Pengantar Educational Data Mining &
+Ceramah, Diskusi &
+Diskusi manfaat data dalam pendidikan &
+Menjelaskan konsep EDM &
+Partisipasi &
+2\% \\
+
+\hline
+
+2 &
+Mengidentifikasi sumber data pendidikan &
+Jenis dan sumber data pendidikan &
+Ceramah, Studi Kasus &
+Mengidentifikasi sumber data sekolah &
+Tugas identifikasi data &
+Tugas &
+3\% \\
+
+\hline
+
+3 &
+Menjelaskan etika penggunaan data &
+Privasi dan etika data pendidikan &
+Diskusi &
+Analisis kasus etika data &
+Analisis kasus &
+Tugas &
+3\% \\
+
+\hline
+
+4 &
+Menyiapkan data pendidikan &
+Data preprocessing &
+Demonstrasi, Praktik &
+Membersihkan dataset sederhana &
+Dataset bersih &
+Praktik &
+4\% \\
+
+\hline
+
+5 &
+Mengelola data hilang dan inkonsisten &
+Data cleaning &
+Praktik &
+Menangani missing values &
+Hasil cleaning &
+Tugas Praktik &
+4\% \\
+
+\hline
+
+6 &
+Melakukan statistik deskriptif &
+Statistik deskriptif data pendidikan &
+Ceramah, Praktik &
+Menghitung ukuran pemusatan dan penyebaran &
+Analisis statistik &
+Tugas &
+4\% \\
+
+\hline
+
+7 &
+Membuat visualisasi data &
+Grafik dan dashboard sederhana &
+Praktik &
+Membuat visualisasi data siswa &
+Visualisasi informatif &
+Tugas Praktik &
+5\% \\
+
+\hline
+
+8 &
+Evaluasi CPMK 1--4 &
+Ujian Tengah Semester &
+Ujian &
+UTS &
+Ketuntasan materi &
+UTS &
+20\% \\
+
+\hline
+
+9 &
+Mengidentifikasi pola data pendidikan &
+Analisis pola belajar siswa &
+Studi Kasus &
+Menganalisis data hasil belajar &
+Temuan pola belajar &
+Tugas &
+4\% \\
+
+\hline
+
+10 &
+Menjelaskan konsep learning analytics &
+Learning Analytics &
+Ceramah, Diskusi &
+Mengkaji penggunaan analytics &
+Pemahaman konsep &
+Tugas &
+4\% \\
+
+\hline
+
+11 &
+Menggunakan teknik segmentasi sederhana &
+Clustering sederhana &
+Demonstrasi &
+Mengelompokkan data siswa &
+Hasil segmentasi &
+Praktik &
+4\% \\
+
+\hline
+
+12 &
+Menggunakan teknik prediksi sederhana &
+Prediksi performa siswa &
+Demonstrasi, Praktik &
+Mencoba model prediksi sederhana &
+Hasil prediksi &
+Praktik &
+4\% \\
+
+\hline
+
+13 &
+Menginterpretasikan hasil analisis &
+Interpretasi dan rekomendasi &
+Diskusi &
+Menyusun rekomendasi &
+Ketepatan interpretasi &
+Tugas &
+4\% \\
+
+\hline
+
+14 &
+Menyusun laporan EDM &
+Struktur laporan analisis data &
+Workshop &
+Menulis laporan proyek &
+Draft laporan &
+Proyek &
+5\% \\
+
+\hline
+
+15 &
+Presentasi proyek &
+Presentasi hasil analisis &
+Seminar &
+Presentasi kelompok &
+Kualitas presentasi &
+Proyek &
+10\% \\
+
+\hline
+
+16 &
+Evaluasi Akhir Semester &
+Ujian Akhir Semester &
+Ujian &
+UAS &
+Ketuntasan CPMK &
+UAS &
+20\% \\
+
+\bottomrule
+
+\end{longtable}
+
+\normalsize
+
+\end{landscape}
+
+# Strategi Penilaian
+
+| Komponen Penilaian | Bobot |
+|-----------|---------|
+| Tugas Individu | 20% |
+| Praktik/Laboratorium | 15% |
+| Proyek Kelompok | 20% |
+| UTS | 20% |
+| UAS | 20% |
+| Keaktifan dan Refleksi | 5% |
+| **Total** | **100%** |
+
+# TUGAS PROYEK MINI
+
+Mahasiswa secara berkelompok melakukan analisis terhadap suatu dataset pendidikan, misalnya:
+
+- Nilai hasil belajar siswa
+- Kehadiran siswa
+- Hasil asesmen diagnostik
+- Aktivitas pembelajaran pada LMS
+- Data survei pendidikan
+
+Output proyek:
+
+1. Dataset yang telah dibersihkan.
+2. Visualisasi data.
+3. Analisis temuan utama.
+4. Rekomendasi untuk peningkatan pembelajaran.
+5. Presentasi hasil.
+
+# Referensi
+
+1. Romero, C., & Ventura, S. *Educational Data Mining and Learning Analytics: An Updated Survey*.
+2. Baker, R. S., & Inventado, P. S. *Educational Data Mining and Learning Analytics*.
+3. Siemens, G., & Baker, R. *Learning Analytics and Educational Data Mining*.
+4. Han, J., Kamber, M., & Pei, J. *Data Mining: Concepts and Techniques*.
+5. Larose, D. T., & Larose, C. D. *Discovering Knowledge in Data*.
+
+<!-- # REFERENSI PENDUKUNG -->
+
+<!-- 1. Dokumentasi R. -->
+<!-- 2. Dokumentasi Spreadsheet (Excel/Google Sheets). -->
+<!-- 3. Artikel dan jurnal terkait Educational Data Mining dan Learning Analytics. -->
+
+\newpage
+
+\vspace{1cm}
+
+\begin{center}
+Mataram, 1 Agustus 2026
+\end{center}
+
+\vspace{1cm}
+
+\renewcommand{\arraystretch}{1.2}
+
+\begin{center}
+\textbf{Disusun oleh}
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{center}
+Dosen Pengampu
+
+\vspace{1.5cm}
+
+\underline{Dr. Indira Puteri Kinasih}
+
+NIP. 198512162019032011
+\end{center}
+
+\vspace{1cm}
+
+\begin{center}
+\textbf{Diperiksa oleh}
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{tabularx}{\textwidth}{XX}
+
+\centering Penanggung Jawab Keilmuan &
+\centering Ketua Program Studi
+\tabularnewline
+
+\rule{0pt}{1.5cm} &
+\rule{0pt}{1.5cm}
+\tabularnewline
+
+\centering \underline{Mulabbiyah, M.Pd.} &
+\centering \underline{Dr. Hilmiati, M.Pd.}
+\tabularnewline
+
+\centering NIP. ........................ &
+\centering NIP. ........................
+
+\end{tabularx}
+
+\vspace{1cm}
+
+\begin{center}
+\textbf{Disahkan oleh}
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{center}
+Dekan
+
+\vspace{1.5cm}
+
+\underline{Prof. Dr. Maimun, S.Ag, M.Pd.}
+
+NIP. ..........................................
+\end{center}
+
+
+
+
+<!-- \vspace{1cm} -->
+
+<!-- \begin{flushright} -->
+<!-- Mataram, \dotfill -->
+<!-- \end{flushright} -->
+
+<!-- \vspace{1cm} -->
+
+<!-- \vspace{1cm} -->
+
+<!-- | Mengetahui | Dosen Pengampu | -->
+<!-- |------------|----------------| -->
+<!-- | Ketua Program Studi | | -->
+<!-- | | | -->
+<!-- | | | -->
+<!-- | (....................................) | (....................................) | -->
+
+<!-- \vspace{1cm} -->
+
+<!-- Tanggal: .................................. -->

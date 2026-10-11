@@ -1,0 +1,361 @@
+---
+title: "Supervised dan Unsupervised Learning"
+subtitle: "Data Mining (MI0439)"
+author: Dr. Indira Puteri Kinasih
+lang: id
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: false
+    html-math-method: katex
+    theme: cosmo
+  
+  pdf:
+    toc: true
+    toc-depth: 3
+    number-sections: false
+---
+
+\newpage
+
+## Capaian Pembelajaran
+
+Setelah mengikuti pertemuan ini, mahasiswa mampu:
+
+- menjelaskan konsep **supervised learning** dan **unsupervised learning**;
+- membedakan keduanya berdasarkan keberadaan target atau label;
+- mengidentifikasi contoh penggunaan masing-masing pendekatan pada data pendidikan.
+
+
+## Mengingat Kembali
+
+Pada pertemuan sebelumnya, kita melakukan **Analisis Eksplorasi Data (EDA)**.
+
+EDA membantu kita melihat:
+
+- distribusi data;
+- perbedaan antar kelompok;
+- hubungan antarvariabel;
+- pola dan kecenderungan dalam data.
+
+Sekarang kita lanjutkan dengan pertanyaan:
+
+> **Bagaimana data dapat digunakan untuk mempelajari suatu pola?**
+
+
+## Belajar dari Data
+
+Perhatikan dua situasi berikut.
+
+### Situasi A
+
+Kita memiliki data siswa beserta **hasil akhirnya**.
+
+| Kehadiran | Nilai Tugas | Aktivitas LMS | Hasil |
+|--:|--:|--:|:--|
+| 95 | 85 | 15 | Tinggi |
+| 90 | 80 | 13 | Tinggi |
+| 70 | 65 | 7 | Rendah |
+| 75 | 70 | 8 | Rendah |
+
+Data hasil sudah diketahui.
+
+Kita dapat menggunakan pola tersebut untuk mempelajari hubungan antara karakteristik siswa dengan hasilnya.
+
+
+### Situasi B
+
+Kita hanya memiliki karakteristik aktivitas siswa.
+
+| Siswa | Kehadiran | Waktu Belajar | Aktivitas LMS |
+|:--|--:|--:|--:|
+| S01 | 95 | 6 | 15 |
+| S02 | 92 | 5 | 14 |
+| S03 | 70 | 2 | 7 |
+| S04 | 73 | 3 | 8 |
+
+Tidak ada hasil atau kategori yang ditentukan sebelumnya.
+
+Kita ingin mengetahui:
+
+> **Apakah terdapat pola atau kelompok siswa yang serupa?**
+
+
+## Dua Cara Belajar dari Data
+
+Perbedaan utama kedua situasi tersebut adalah:
+
+> **Apakah kita sudah mengetahui target atau label yang ingin dipelajari?**
+
+| | *Supervised* | *Unsupervised* |
+|:--|:--|:--|
+| Target/label | Ada | Tidak ada |
+| Informasi yang tersedia | Input + target | Input |
+| Tujuan | Mempelajari pola terhadap target | Menemukan pola dalam data |
+| Contoh | Belajar dari data nilai siswa | Mencari kelompok siswa |
+
+
+# *Supervised & Unsupervised*
+
+## *Supervised Learning*
+
+Pada **supervised learning**, model belajar menggunakan data yang sudah memiliki **target atau label**.
+
+Struktur sederhananya:
+
+**Input (X) → Target (Y)**
+
+Model mempelajari hubungan antara variabel input dan target.
+
+Contoh:
+
+| Kehadiran | Waktu Belajar | Aktivitas LMS | Nilai UAS |
+|--:|--:|--:|--:|
+| 95 | 5 | 12 | 82 |
+| 90 | 7 | 15 | 88 |
+| 75 | 3 | 8 | 68 |
+| ... | ... | ... | ... |
+
+Jika tujuan kita adalah memprediksi **Nilai UAS**, maka:
+
+- **X** = Kehadiran, Waktu Belajar, Aktivitas LMS
+- **Y** = Nilai UAS
+
+Model belajar dari data tersebut untuk memprediksi nilai UAS pada data baru.
+
+
+## *Supervised Learning* dalam EDM
+
+Beberapa pertanyaan pendidikan yang dapat menggunakan supervised learning:
+
+| Pertanyaan | Target | Jenis masalah |
+|:--|:--|:--|
+| Berapa perkiraan nilai akhir siswa? | Nilai akhir | **Regresi** |
+| Apakah siswa akan lulus? | Lulus / Tidak lulus | **Klasifikasi** |
+| Apakah siswa berisiko mengalami kesulitan belajar? | Risiko / Tidak | **Klasifikasi** |
+| Berapa nilai matematika yang mungkin diperoleh siswa? | Nilai | **Regresi** |
+
+## Dua bentuk yang penting
+
+**Regresi**
+
+Target berupa nilai numerik.
+
+$$
+Y = f(X) + \varepsilon
+$$
+
+Contoh: memprediksi nilai UAS.
+
+**Klasifikasi**
+
+Target berupa kategori.
+
+Contoh:
+
+> Siswa → **Lulus** atau **Tidak Lulus**
+
+
+### Contoh: Prediksi Hasil Belajar
+
+Misalkan tersedia data:
+
+| Kehadiran | Waktu Belajar | Aktivitas LMS | Nilai UAS |
+|--:|--:|--:|--:|
+| 95 | 5 | 12 | 82 |
+| 90 | 7 | 15 | 88 |
+| 75 | 3 | 8 | 68 |
+| 85 | 4 | 10 | 76 |
+| ... | ... | ... | ... |
+
+Pertanyaan:
+
+> **Dapatkah kita memprediksi nilai UAS berdasarkan aktivitas belajar siswa?**
+
+Karena **Nilai UAS sudah diketahui dalam data pelatihan**, masalah ini termasuk:
+
+**Supervised Learning → Regresi**
+
+
+## *Unsupervised Learning*
+
+Pada **unsupervised learning**, data tidak memiliki target yang ingin diprediksi.
+
+Model digunakan untuk menemukan **struktur, kelompok, atau pola** dalam data.
+
+Struktur sederhananya:
+
+**Input (X) → Pola / Struktur**
+
+Contoh:
+
+| Siswa | Kehadiran | Waktu Belajar | Aktivitas LMS |
+|:--|--:|--:|--:|
+| S01 | 95 | 5 | 12 |
+| S02 | 92 | 6 | 15 |
+| S03 | 70 | 2 | 5 |
+| S04 | 73 | 3 | 6 |
+| ... | ... | ... | ... |
+
+Kita tidak menentukan terlebih dahulu apakah siswa termasuk kelompok tertentu.
+
+Model dapat digunakan untuk menemukan kelompok siswa berdasarkan kemiripan karakteristiknya.
+
+
+## *Unsupervised Learning* dalam EDM
+
+Salah satu contoh paling sederhana adalah **clustering**.
+
+Misalnya, berdasarkan aktivitas belajar, model menemukan tiga kelompok:
+
+| Kelompok | Karakteristik |
+|:--|:--|
+| Kelompok A | Aktivitas belajar tinggi |
+| Kelompok B | Aktivitas belajar sedang |
+| Kelompok C | Aktivitas belajar rendah |
+
+Kelompok tersebut **tidak ditentukan sebelumnya** oleh peneliti.
+
+Model menemukan kelompok berdasarkan pola yang terdapat dalam data.
+
+
+### Contoh: Mengelompokkan Siswa
+
+Pertanyaan:
+
+> **Apakah terdapat kelompok siswa dengan pola aktivitas belajar yang berbeda?**
+
+Variabel yang digunakan:
+
+- Kehadiran
+- Waktu belajar
+- Aktivitas LMS
+- Jumlah latihan
+
+Tidak ada variabel **target** yang ingin diprediksi.
+
+Maka pendekatannya:
+
+**Unsupervised Learning → Clustering**
+
+
+## *Supervised vs Unsupervised*
+
+| Karakteristik | Supervised | Unsupervised |
+|:--|:--:|:--:|
+| Target/label | Ada | Tidak ada |
+| Tujuan | Prediksi / klasifikasi | Menemukan pola / kelompok |
+| Pertanyaan utama | "Apa yang akan terjadi?" | "Pola apa yang terdapat dalam data?" |
+| Contoh | Prediksi nilai | Pengelompokan siswa |
+| Contoh metode | Regresi, klasifikasi | Clustering |
+
+### Cara sederhana membedakannya
+
+> **Ada target yang ingin diprediksi? → Supervised**
+
+> **Tidak ada target dan ingin mencari pola? → Unsupervised**
+
+
+## Contoh Kasus Pendidikan
+
+Perhatikan beberapa kasus berikut.
+
+| Kasus | Pendekatan |
+|:--|:--|
+| Memprediksi nilai UAS berdasarkan nilai tugas dan kehadiran | **Supervised** |
+| Memprediksi apakah siswa akan lulus | **Supervised** |
+| Mengelompokkan siswa berdasarkan pola belajar | **Unsupervised** |
+| Mencari kelompok siswa dengan pola penggunaan LMS yang serupa | **Unsupervised** |
+| Memprediksi siswa yang berisiko tidak menyelesaikan pembelajaran | **Supervised** |
+
+
+## Bagaimana Menentukannya?
+
+Ketika menghadapi suatu permasalahan data, tanyakan:
+
+**Apa tujuan analisisnya?**
+
+↓
+
+**Apakah terdapat target/label yang ingin diprediksi?**
+
+↓
+
+**Ya → Supervised Learning**
+
+**Tidak → Unsupervised Learning**
+
+Kemudian tentukan metode yang sesuai dengan jenis permasalahannya.
+
+
+## Studi Kasus
+
+Sebuah madrasah memiliki data:
+
+- kehadiran siswa;
+- nilai tugas;
+- nilai kuis;
+- aktivitas LMS;
+- waktu belajar;
+- nilai akhir.
+
+Perhatikan beberapa tujuan berikut.
+
+**Kasus A**
+
+> Guru ingin memprediksi nilai akhir siswa berdasarkan aktivitas belajarnya.
+
+**Kasus B**
+
+> Guru ingin mengetahui apakah terdapat kelompok siswa dengan pola aktivitas belajar yang berbeda.
+
+### Diskusikan
+
+1. Apakah terdapat target pada masing-masing kasus?
+2. Pendekatan apa yang sesuai?
+3. Mengapa?
+
+
+## *Supervised* dan *Unsupervised Learning* dalam EDM
+
+Dalam **Educational Data Mining (EDM)**, pola dalam data dapat dipelajari dengan pendekatan yang berbeda, bergantung pada ada atau tidaknya **target atau label**.
+
+```text
+
+Data Pendidikan
+      ↓
+Preprocessing
+      ↓
+EDA
+      ↓
+Menentukan tujuan analisis
+      ↓
+┌─────────────────────────┐
+│ Apakah ada target/label?│
+└────────────┬────────────┘
+             │
+       ┌─────┴─────┐
+      Ya          Tidak
+       ↓             ↓
+ Supervised     Unsupervised
+       ↓             ↓
+Mempelajari     Menemukan
+pola terhadap   pola/kelompok
+target          dalam data
+```
+
+
+# Inti Pembelajaran
+
+*Supervised learning*
+
+Belajar dari data yang memiliki target untuk melakukan prediksi atau klasifikasi.
+
+*Unsupervised learning*
+
+Mempelajari data tanpa target untuk menemukan pola atau struktur.
+
+Dalam EDM, pemilihan metode sebaiknya dimulai dari:
+
+Pertanyaan → Data → Tujuan → Metode

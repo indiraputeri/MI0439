@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="id" xml:lang="id"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Indira Puteri Kinasih">
+
+<title>Supervised dan Unsupervised Learning</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="edm4_files/libs/clipboard/clipboard.min.js"></script>
+<script src="edm4_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="edm4_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="edm4_files/libs/quarto-html/popper.min.js"></script>
+<script src="edm4_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="edm4_files/libs/quarto-html/anchor.min.js"></script>
+<link href="edm4_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="edm4_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="edm4_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="edm4_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="edm4_files/libs/bootstrap/bootstrap-c2e55264ed47ce3b2e0326a2269f9400.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Daftar Isi</h2>
+   
+  <ul class="collapse">
+  <li><a href="#capaian-pembelajaran" id="toc-capaian-pembelajaran" class="nav-link active" data-scroll-target="#capaian-pembelajaran">Capaian Pembelajaran</a></li>
+  <li><a href="#mengapa-machine-learning" id="toc-mengapa-machine-learning" class="nav-link" data-scroll-target="#mengapa-machine-learning">Mengapa Machine Learning?</a></li>
+  <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link" data-scroll-target="#machine-learning">Machine Learning</a></li>
+  <li><a href="#dua-pendekatan-utama" id="toc-dua-pendekatan-utama" class="nav-link" data-scroll-target="#dua-pendekatan-utama">Dua Pendekatan Utama</a></li>
+  <li><a href="#supervised-learning" id="toc-supervised-learning" class="nav-link" data-scroll-target="#supervised-learning">Supervised Learning</a></li>
+  <li><a href="#supervised-learning-dalam-edm" id="toc-supervised-learning-dalam-edm" class="nav-link" data-scroll-target="#supervised-learning-dalam-edm">Supervised Learning dalam EDM</a></li>
+  <li><a href="#contoh-prediksi-hasil-belajar" id="toc-contoh-prediksi-hasil-belajar" class="nav-link" data-scroll-target="#contoh-prediksi-hasil-belajar">Contoh: Prediksi Hasil Belajar</a></li>
+  <li><a href="#unsupervised-learning" id="toc-unsupervised-learning" class="nav-link" data-scroll-target="#unsupervised-learning">Unsupervised Learning</a></li>
+  <li><a href="#unsupervised-learning-dalam-edm" id="toc-unsupervised-learning-dalam-edm" class="nav-link" data-scroll-target="#unsupervised-learning-dalam-edm">Unsupervised Learning dalam EDM</a></li>
+  <li><a href="#contoh-mengelompokkan-siswa" id="toc-contoh-mengelompokkan-siswa" class="nav-link" data-scroll-target="#contoh-mengelompokkan-siswa">Contoh: Mengelompokkan Siswa</a></li>
+  <li><a href="#supervised-vs-unsupervised" id="toc-supervised-vs-unsupervised" class="nav-link" data-scroll-target="#supervised-vs-unsupervised">Supervised vs Unsupervised</a></li>
+  <li><a href="#contoh-kasus-pendidikan" id="toc-contoh-kasus-pendidikan" class="nav-link" data-scroll-target="#contoh-kasus-pendidikan">Contoh Kasus Pendidikan</a></li>
+  <li><a href="#bagaimana-menentukannya" id="toc-bagaimana-menentukannya" class="nav-link" data-scroll-target="#bagaimana-menentukannya">Bagaimana Menentukannya?</a></li>
+  <li><a href="#studi-kasus" id="toc-studi-kasus" class="nav-link" data-scroll-target="#studi-kasus">Studi Kasus</a></li>
+  <li><a href="#machine-learning-dalam-edm" id="toc-machine-learning-dalam-edm" class="nav-link" data-scroll-target="#machine-learning-dalam-edm">Machine Learning dalam EDM</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Format Lain</h2><ul><li><a href="edm4.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Supervised dan Unsupervised Learning</h1>
+<p class="subtitle lead">Data Mining (MI0439)</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Penulis</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Indira Puteri Kinasih </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="capaian-pembelajaran" class="level2">
+<h2 class="anchored" data-anchor-id="capaian-pembelajaran">Capaian Pembelajaran</h2>
+<p>Setelah mengikuti pertemuan ini, mahasiswa mampu:</p>
+<ul>
+<li>menjelaskan konsep <strong>supervised learning</strong> dan <strong>unsupervised learning</strong>;</li>
+<li>membedakan supervised dan unsupervised learning berdasarkan tujuan dan karakteristik datanya;</li>
+<li>mengidentifikasi contoh penerapan kedua pendekatan dalam konteks pendidikan;</li>
+<li>menentukan pendekatan yang sesuai untuk suatu permasalahan sederhana dalam Educational Data Mining (EDM).</li>
+</ul>
+<hr>
+</section>
+<section id="mengapa-machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="mengapa-machine-learning">Mengapa Machine Learning?</h2>
+<p>Pada pertemuan sebelumnya, kita telah melakukan <strong>Analisis Eksplorasi Data (EDA)</strong> untuk memahami pola dalam data.</p>
+<p>EDA membantu kita menjawab:</p>
+<blockquote class="blockquote">
+<p><strong>“Apa yang terlihat dalam data?”</strong></p>
+</blockquote>
+<p>Machine learning melangkah lebih jauh:</p>
+<blockquote class="blockquote">
+<p><strong>“Apakah pola dalam data dapat digunakan untuk membuat prediksi atau menemukan kelompok/pola tertentu?”</strong></p>
+</blockquote>
+<p>Dalam EDM, machine learning dapat digunakan untuk membantu memahami perilaku belajar, memprediksi hasil belajar, menemukan kelompok siswa, dan mengidentifikasi pola aktivitas pembelajaran.</p>
+<hr>
+</section>
+<section id="machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="machine-learning">Machine Learning</h2>
+<p><strong>Machine learning</strong> adalah pendekatan yang memungkinkan komputer mempelajari pola dari data untuk menghasilkan prediksi, klasifikasi, atau menemukan struktur tertentu dalam data.</p>
+<p>Secara sederhana:</p>
+<p><strong>Data → Proses Pembelajaran → Model → Prediksi / Pola</strong></p>
+<p>Contoh dalam pendidikan:</p>
+<ul>
+<li>memprediksi apakah siswa berisiko mengalami kesulitan belajar;</li>
+<li>memprediksi nilai akhir siswa;</li>
+<li>mengelompokkan siswa berdasarkan pola aktivitas belajar;</li>
+<li>menemukan kelompok siswa dengan karakteristik pembelajaran yang serupa.</li>
+</ul>
+<hr>
+</section>
+<section id="dua-pendekatan-utama" class="level2">
+<h2 class="anchored" data-anchor-id="dua-pendekatan-utama">Dua Pendekatan Utama</h2>
+<p>Dalam konteks dasar machine learning, terdapat dua pendekatan yang perlu dibedakan:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 30%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Pendekatan</th>
+<th style="text-align: left;">Tujuan utama</th>
+<th style="text-align: center;">Data memiliki target?</th>
+<th style="text-align: left;">Contoh EDM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Supervised learning</strong></td>
+<td style="text-align: left;">Mempelajari hubungan untuk melakukan prediksi atau klasifikasi</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: left;">Memprediksi kelulusan siswa</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Unsupervised learning</strong></td>
+<td style="text-align: left;">Menemukan pola atau struktur dalam data</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: left;">Mengelompokkan siswa berdasarkan aktivitas belajar</td>
+</tr>
+</tbody>
+</table>
+<p>Perbedaan utama terletak pada <strong>ada atau tidaknya target yang ingin diprediksi</strong>.</p>
+<hr>
+</section>
+<section id="supervised-learning" class="level2">
+<h2 class="anchored" data-anchor-id="supervised-learning">Supervised Learning</h2>
+<p>Pada <strong>supervised learning</strong>, model belajar menggunakan data yang sudah memiliki <strong>target atau label</strong>.</p>
+<p>Struktur sederhananya:</p>
+<p><strong>Input (X) → Target (Y)</strong></p>
+<p>Model mempelajari hubungan antara variabel input dan target.</p>
+<p>Contoh:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Kehadiran</th>
+<th style="text-align: right;">Waktu Belajar</th>
+<th style="text-align: right;">Aktivitas LMS</th>
+<th style="text-align: right;">Nilai UAS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">82</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">88</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">68</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: right;">…</td>
+</tr>
+</tbody>
+</table>
+<p>Jika tujuan kita adalah memprediksi <strong>Nilai UAS</strong>, maka:</p>
+<ul>
+<li><strong>X</strong> = Kehadiran, Waktu Belajar, Aktivitas LMS</li>
+<li><strong>Y</strong> = Nilai UAS</li>
+</ul>
+<p>Model belajar dari data tersebut untuk memprediksi nilai UAS pada data baru.</p>
+<hr>
+</section>
+<section id="supervised-learning-dalam-edm" class="level2">
+<h2 class="anchored" data-anchor-id="supervised-learning-dalam-edm">Supervised Learning dalam EDM</h2>
+<p>Beberapa pertanyaan pendidikan yang dapat menggunakan supervised learning:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Pertanyaan</th>
+<th style="text-align: left;">Target</th>
+<th style="text-align: left;">Jenis masalah</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Berapa perkiraan nilai akhir siswa?</td>
+<td style="text-align: left;">Nilai akhir</td>
+<td style="text-align: left;"><strong>Regresi</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Apakah siswa akan lulus?</td>
+<td style="text-align: left;">Lulus / Tidak lulus</td>
+<td style="text-align: left;"><strong>Klasifikasi</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Apakah siswa berisiko mengalami kesulitan belajar?</td>
+<td style="text-align: left;">Risiko / Tidak</td>
+<td style="text-align: left;"><strong>Klasifikasi</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Berapa nilai matematika yang mungkin diperoleh siswa?</td>
+<td style="text-align: left;">Nilai</td>
+<td style="text-align: left;"><strong>Regresi</strong></td>
+</tr>
+</tbody>
+</table>
+<section id="dua-bentuk-yang-penting" class="level3">
+<h3 class="anchored" data-anchor-id="dua-bentuk-yang-penting">Dua bentuk yang penting</h3>
+<p><strong>Regresi</strong></p>
+<p>Target berupa nilai numerik.</p>
+<p><span class="math display">
+Y = f(X) + \varepsilon
+</span></p>
+<p>Contoh: memprediksi nilai UAS.</p>
+<p><strong>Klasifikasi</strong></p>
+<p>Target berupa kategori.</p>
+<p>Contoh:</p>
+<blockquote class="blockquote">
+<p>Siswa → <strong>Lulus</strong> atau <strong>Tidak Lulus</strong></p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="contoh-prediksi-hasil-belajar" class="level2">
+<h2 class="anchored" data-anchor-id="contoh-prediksi-hasil-belajar">Contoh: Prediksi Hasil Belajar</h2>
+<p>Misalkan tersedia data:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Kehadiran</th>
+<th style="text-align: right;">Waktu Belajar</th>
+<th style="text-align: right;">Aktivitas LMS</th>
+<th style="text-align: right;">Nilai UAS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">82</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">88</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">68</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">76</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: right;">…</td>
+</tr>
+</tbody>
+</table>
+<p>Pertanyaan:</p>
+<blockquote class="blockquote">
+<p><strong>Dapatkah kita memprediksi nilai UAS berdasarkan aktivitas belajar siswa?</strong></p>
+</blockquote>
+<p>Karena <strong>Nilai UAS sudah diketahui dalam data pelatihan</strong>, masalah ini termasuk:</p>
+<p><strong>Supervised Learning → Regresi</strong></p>
+<hr>
+</section>
+<section id="unsupervised-learning" class="level2">
+<h2 class="anchored" data-anchor-id="unsupervised-learning">Unsupervised Learning</h2>
+<p>Pada <strong>unsupervised learning</strong>, data tidak memiliki target yang ingin diprediksi.</p>
+<p>Model digunakan untuk menemukan <strong>struktur, kelompok, atau pola</strong> dalam data.</p>
+<p>Struktur sederhananya:</p>
+<p><strong>Input (X) → Pola / Struktur</strong></p>
+<p>Contoh:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Siswa</th>
+<th style="text-align: right;">Kehadiran</th>
+<th style="text-align: right;">Waktu Belajar</th>
+<th style="text-align: right;">Aktivitas LMS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">S01</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S02</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">S03</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S04</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: right;">…</td>
+</tr>
+</tbody>
+</table>
+<p>Kita tidak menentukan terlebih dahulu apakah siswa termasuk kelompok tertentu.</p>
+<p>Model dapat digunakan untuk menemukan kelompok siswa berdasarkan kemiripan karakteristiknya.</p>
+<hr>
+</section>
+<section id="unsupervised-learning-dalam-edm" class="level2">
+<h2 class="anchored" data-anchor-id="unsupervised-learning-dalam-edm">Unsupervised Learning dalam EDM</h2>
+<p>Salah satu contoh paling sederhana adalah <strong>clustering</strong>.</p>
+<p>Misalnya, berdasarkan aktivitas belajar, model menemukan tiga kelompok:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Kelompok</th>
+<th style="text-align: left;">Karakteristik</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Kelompok A</td>
+<td style="text-align: left;">Aktivitas belajar tinggi</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kelompok B</td>
+<td style="text-align: left;">Aktivitas belajar sedang</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kelompok C</td>
+<td style="text-align: left;">Aktivitas belajar rendah</td>
+</tr>
+</tbody>
+</table>
+<p>Kelompok tersebut <strong>tidak ditentukan sebelumnya</strong> oleh peneliti.</p>
+<p>Model menemukan kelompok berdasarkan pola yang terdapat dalam data.</p>
+<hr>
+</section>
+<section id="contoh-mengelompokkan-siswa" class="level2">
+<h2 class="anchored" data-anchor-id="contoh-mengelompokkan-siswa">Contoh: Mengelompokkan Siswa</h2>
+<p>Pertanyaan:</p>
+<blockquote class="blockquote">
+<p><strong>Apakah terdapat kelompok siswa dengan pola aktivitas belajar yang berbeda?</strong></p>
+</blockquote>
+<p>Variabel yang digunakan:</p>
+<ul>
+<li>Kehadiran</li>
+<li>Waktu belajar</li>
+<li>Aktivitas LMS</li>
+<li>Jumlah latihan</li>
+</ul>
+<p>Tidak ada variabel <strong>target</strong> yang ingin diprediksi.</p>
+<p>Maka pendekatannya:</p>
+<p><strong>Unsupervised Learning → Clustering</strong></p>
+<hr>
+</section>
+<section id="supervised-vs-unsupervised" class="level2">
+<h2 class="anchored" data-anchor-id="supervised-vs-unsupervised">Supervised vs Unsupervised</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 36%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Karakteristik</th>
+<th style="text-align: center;">Supervised</th>
+<th style="text-align: center;">Unsupervised</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Target/label</td>
+<td style="text-align: center;">Ada</td>
+<td style="text-align: center;">Tidak ada</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tujuan</td>
+<td style="text-align: center;">Prediksi / klasifikasi</td>
+<td style="text-align: center;">Menemukan pola / kelompok</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pertanyaan utama</td>
+<td style="text-align: center;">“Apa yang akan terjadi?”</td>
+<td style="text-align: center;">“Pola apa yang terdapat dalam data?”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Contoh</td>
+<td style="text-align: center;">Prediksi nilai</td>
+<td style="text-align: center;">Pengelompokan siswa</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Contoh metode</td>
+<td style="text-align: center;">Regresi, klasifikasi</td>
+<td style="text-align: center;">Clustering</td>
+</tr>
+</tbody>
+</table>
+<section id="cara-sederhana-membedakannya" class="level3">
+<h3 class="anchored" data-anchor-id="cara-sederhana-membedakannya">Cara sederhana membedakannya</h3>
+<blockquote class="blockquote">
+<p><strong>Ada target yang ingin diprediksi? → Supervised</strong></p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Tidak ada target dan ingin mencari pola? → Unsupervised</strong></p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="contoh-kasus-pendidikan" class="level2">
+<h2 class="anchored" data-anchor-id="contoh-kasus-pendidikan">Contoh Kasus Pendidikan</h2>
+<p>Perhatikan beberapa kasus berikut.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Kasus</th>
+<th style="text-align: left;">Pendekatan</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Memprediksi nilai UAS berdasarkan nilai tugas dan kehadiran</td>
+<td style="text-align: left;"><strong>Supervised</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Memprediksi apakah siswa akan lulus</td>
+<td style="text-align: left;"><strong>Supervised</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mengelompokkan siswa berdasarkan pola belajar</td>
+<td style="text-align: left;"><strong>Unsupervised</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mencari kelompok siswa dengan pola penggunaan LMS yang serupa</td>
+<td style="text-align: left;"><strong>Unsupervised</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Memprediksi siswa yang berisiko tidak menyelesaikan pembelajaran</td>
+<td style="text-align: left;"><strong>Supervised</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="bagaimana-menentukannya" class="level2">
+<h2 class="anchored" data-anchor-id="bagaimana-menentukannya">Bagaimana Menentukannya?</h2>
+<p>Ketika menghadapi suatu permasalahan data, tanyakan:</p>
+<p><strong>Apa tujuan analisisnya?</strong></p>
+<p>↓</p>
+<p><strong>Apakah terdapat target/label yang ingin diprediksi?</strong></p>
+<p>↓</p>
+<p><strong>Ya → Supervised Learning</strong></p>
+<p><strong>Tidak → Unsupervised Learning</strong></p>
+<p>Kemudian tentukan metode yang sesuai dengan jenis permasalahannya.</p>
+<hr>
+</section>
+<section id="studi-kasus" class="level2">
+<h2 class="anchored" data-anchor-id="studi-kasus">Studi Kasus</h2>
+<p>Sebuah madrasah memiliki data:</p>
+<ul>
+<li>kehadiran siswa;</li>
+<li>nilai tugas;</li>
+<li>nilai kuis;</li>
+<li>aktivitas LMS;</li>
+<li>waktu belajar;</li>
+<li>nilai akhir.</li>
+</ul>
+<p>Perhatikan beberapa tujuan berikut.</p>
+<p><strong>Kasus A</strong></p>
+<blockquote class="blockquote">
+<p>Guru ingin memprediksi nilai akhir siswa berdasarkan aktivitas belajarnya.</p>
+</blockquote>
+<p><strong>Kasus B</strong></p>
+<blockquote class="blockquote">
+<p>Guru ingin mengetahui apakah terdapat kelompok siswa dengan pola aktivitas belajar yang berbeda.</p>
+</blockquote>
+<section id="diskusikan" class="level3">
+<h3 class="anchored" data-anchor-id="diskusikan">Diskusikan</h3>
+<ol type="1">
+<li>Apakah terdapat target pada masing-masing kasus?</li>
+<li>Pendekatan apa yang sesuai?</li>
+<li>Mengapa?</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="machine-learning-dalam-edm" class="level2">
+<h2 class="anchored" data-anchor-id="machine-learning-dalam-edm">Machine Learning dalam EDM</h2>
+<p>Machine learning merupakan salah satu pendekatan yang dapat digunakan dalam <strong>Educational Data Mining</strong>.</p>
+<p>Contohnya:</p>
+<pre class="text"><code>Data Pendidikan
+      ↓
+Preprocessing
+      ↓
+EDA
+      ↓
+Machine Learning
+      ↓
+┌───────────────────┐
+│ Supervised        │
+│ → Prediksi        │
+│ → Klasifikasi     │
+└───────────────────┘
+
+atau
+
+┌───────────────────┐
+│ Unsupervised      │
+│ → Clustering      │
+│ → Menemukan pola  │
+└───────────────────┘</code></pre>
+<p>Namun, penggunaan machine learning tidak dimulai dari pemilihan algoritma.</p>
+<p>Kita terlebih dahulu perlu memahami:</p>
+<p>data → pertanyaan → tujuan analisis → metode</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Disalin!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Disalin!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

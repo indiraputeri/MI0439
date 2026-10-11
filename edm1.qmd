@@ -1,0 +1,888 @@
+---
+title: "Ide dan Konsep Dasar"
+subtitle: "Data Mining (MI0439)"
+author: Dr. Indira Puteri Kinasih
+lang: id
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: false
+    html-math-method: katex
+    theme: cosmo
+  
+  pdf:
+    toc: true
+    toc-depth: 3
+    number-sections: false
+---
+
+\newpage
+
+# Capaian Pembelajaran
+
+Setelah mengikuti pertemuan ini, mahasiswa diharapkan mampu:
+
+1. menjelaskan konsep dasar **Educational Data Mining (EDM)**;
+2. mengidentifikasi jenis data yang dapat dianalisis dalam konteks pendidikan;
+3. menjelaskan tahapan **Knowledge Discovery in Databases (KDD)**;
+4. menjelaskan konsep dasar **Learning Analytics**;
+5. membedakan EDM dan Learning Analytics;
+6. memberikan contoh penerapan EDM dalam konteks pembelajaran di MI/SD.
+
+
+# Pengantar: Mengapa Data Penting dalam Pendidikan?
+
+Bayangkan seorang guru MI memiliki data pembelajaran siswa selama satu semester.
+
+Data tersebut dapat berupa:
+
+* nilai tugas;
+* nilai kuis;
+* nilai UTS dan UAS;
+* kehadiran;
+* jumlah tugas yang dikumpulkan;
+* aktivitas siswa pada LMS;
+* waktu mengerjakan soal;
+* frekuensi membaca materi;
+* aktivitas menonton video pembelajaran;
+* hasil asesmen diagnostik.
+
+Secara sederhana, guru dapat menggunakan data tersebut untuk mengetahui:
+
+> **Siapa siswa yang memperoleh nilai rendah?**
+
+Namun, kita dapat mengajukan pertanyaan yang lebih menarik:
+
+> **Apakah terdapat pola tertentu yang dapat menunjukkan bahwa seorang siswa berisiko mengalami kesulitan belajar?**
+
+Misalnya, dari data ditemukan pola bahwa siswa yang memiliki:
+
+* kehadiran rendah;
+* aktivitas belajar digital rendah; dan
+* nilai kuis rendah
+
+cenderung memperoleh nilai akhir yang rendah.
+
+Pertanyaan berikutnya adalah:
+
+> **Bagaimana kita dapat menemukan pola tersebut secara sistematis dari data dalam jumlah besar?**
+
+Di sinilah **data mining dalam pendidikan** menjadi penting.
+
+---
+
+# Apa Itu Data Mining?
+
+Secara sederhana,
+
+> **Data mining adalah proses menemukan pola, hubungan, atau informasi yang berguna dari sekumpulan data.**
+
+Data mining tidak sekadar melihat atau menghitung data.
+
+Misalnya terdapat data:
+
+| Siswa | Kehadiran | Nilai Kuis | Nilai UAS |
+| :---- | --------: | ---------: | --------: |
+| A     |       95% |         90 |        88 |
+| B     |       90% |         85 |        82 |
+| C     |       70% |         60 |        58 |
+| D     |       65% |         55 |        50 |
+| E     |       98% |         92 |        95 |
+
+Dari tabel tersebut, kita mungkin melihat bahwa siswa dengan kehadiran dan nilai kuis rendah cenderung memiliki nilai UAS yang rendah.
+
+Data mining mencoba menemukan pola semacam ini secara **sistematis menggunakan teknik statistik, komputasi, dan machine learning**.
+
+## Beberapa Tujuan Data Mining
+
+Data mining dapat digunakan untuk:
+
+* **classification** — mengelompokkan data ke dalam kelas tertentu;
+* **clustering** — menemukan kelompok yang memiliki karakteristik serupa;
+* **association** — menemukan hubungan atau pola kemunculan bersama;
+* **regression** — memprediksi nilai numerik;
+* **anomaly detection** — menemukan pola atau observasi yang tidak biasa.
+
+---
+
+# Educational Data Mining (EDM)
+
+## Pengertian EDM
+
+**Educational Data Mining (EDM)** merupakan penerapan teknik data mining untuk menganalisis data yang berasal dari lingkungan pendidikan.
+
+Secara sederhana:
+
+$$
+\text{EDM} = \text{Data Mining} + \text{Data Pendidikan}
+$$
+
+Data pendidikan dapat berasal dari:
+
+* siswa;
+* guru;
+* sekolah;
+* kelas;
+* ujian;
+* tugas;
+* sistem akademik;
+* Learning Management System (LMS);
+* aplikasi pembelajaran;
+* interaksi siswa dengan materi pembelajaran.
+
+Dengan EDM, data pendidikan dapat digunakan untuk menemukan pola yang mungkin sulit ditemukan melalui pengamatan biasa.
+
+---
+
+# Jenis Data dalam EDM
+
+Dalam konteks pendidikan, data yang dianalisis dapat berasal dari berbagai sumber.
+
+| Jenis Data                      | Contoh                                                                                                |
+| :------------------------------ | :---------------------------------------------------------------------------------------------------- |
+| **Data Akademik**               | Nilai tugas, kuis, UTS, UAS, mata pelajaran, dan remedial                                             |
+| **Data Kehadiran**              | Jumlah kehadiran, ketidakhadiran, keterlambatan, dan pola kehadiran                                   |
+| **Data Aktivitas Pembelajaran** | Jumlah materi yang dibaca, video yang ditonton, waktu belajar, latihan yang dikerjakan, dan login LMS |
+| **Data Interaksi**              | Interaksi dengan guru, diskusi, komentar, forum pembelajaran, dan aktivitas kolaborasi                |
+| **Data Karakteristik Siswa**    | Kelas, usia, jenis kelamin, karakteristik akademik, dan latar belakang pendidikan                     |
+
+> **Catatan:** Penggunaan data siswa harus memperhatikan privasi, keamanan data, etika penelitian, dan tujuan pendidikan.
+
+---
+
+# Mengapa EDM Dibutuhkan?
+
+Jumlah data yang dihasilkan dalam lingkungan pendidikan semakin besar.
+
+Seorang guru mungkin dapat memahami perkembangan beberapa siswa melalui pengamatan langsung.
+
+Namun, ketika jumlah siswa mencapai ratusan atau bahkan ribuan, menemukan pola secara manual menjadi semakin sulit.
+
+EDM dapat membantu menjawab pertanyaan seperti:
+
+### Memahami siswa
+
+> Bagaimana karakteristik siswa yang mengalami kesulitan belajar?
+
+### Memprediksi
+
+> Siswa mana yang berpotensi memperoleh hasil belajar rendah?
+
+### Mengelompokkan
+
+> Apakah siswa dapat dikelompokkan berdasarkan pola belajar mereka?
+
+### Menemukan hubungan
+
+> Apakah kehadiran berkaitan dengan hasil belajar?
+
+### Mengevaluasi pembelajaran
+
+> Apakah aktivitas siswa pada media pembelajaran digital berkaitan dengan hasil belajar?
+
+---
+
+# Contoh EDM dalam Konteks PGMI
+
+Misalkan seorang peneliti memiliki data dari 1.000 siswa MI.
+
+Variabel yang tersedia:
+
+```text
+Kehadiran
+Nilai tugas
+Nilai kuis
+Nilai UTS
+Nilai UAS
+Jumlah akses LMS
+Waktu belajar
+Jumlah video yang ditonton
+```
+
+Data tersebut dapat dianalisis menggunakan beberapa teknik.
+
+## Classification
+
+Tujuannya adalah memprediksi kategori tertentu.
+
+Misalnya:
+
+```text
+Risiko rendah
+Risiko sedang
+Risiko tinggi
+```
+
+Model classification dapat digunakan untuk memprediksi kategori risiko berdasarkan karakteristik belajar siswa.
+
+---
+
+## Clustering
+
+Clustering digunakan untuk menemukan kelompok siswa yang memiliki karakteristik serupa.
+
+Misalnya ditemukan:
+
+```text
+Kelompok 1 → aktif dan berprestasi
+
+Kelompok 2 → aktif tetapi prestasi sedang
+
+Kelompok 3 → kurang aktif dan berprestasi rendah
+```
+
+Kelompok tersebut tidak ditentukan sebelumnya. Algoritma membantu menemukan kelompok berdasarkan pola dalam data.
+
+---
+
+## Association Rule
+
+Association digunakan untuk menemukan pola hubungan.
+
+Misalnya ditemukan:
+
+```text
+Kehadiran rendah
++
+Aktivitas LMS rendah
++
+Nilai kuis rendah
+        ↓
+Nilai akhir rendah
+```
+
+Pola seperti ini dapat menjadi informasi yang berguna bagi guru.
+
+---
+
+## Regression
+
+Regression digunakan ketika target yang ingin diprediksi berupa angka.
+
+Misalnya:
+
+> Memprediksi nilai akhir siswa berdasarkan kehadiran, nilai tugas, dan aktivitas pembelajaran.
+
+---
+
+# Knowledge Discovery in Databases (KDD)
+
+Sebelum membahas lebih jauh mengenai EDM, kita perlu memahami konsep **Knowledge Discovery in Databases (KDD)**.
+
+KDD dapat dipahami sebagai:
+
+> **proses menemukan pengetahuan yang berguna dari data.**
+
+Hal penting yang perlu diingat:
+
+> **KDD bukan sama dengan Data Mining.**
+
+Data mining merupakan **salah satu tahap dalam proses KDD**.
+
+Secara umum, proses KDD dapat digambarkan sebagai berikut:
+
+```text
+DATA
+  ↓
+Selection
+  ↓
+Preprocessing
+  ↓
+Transformation
+  ↓
+Data Mining
+  ↓
+Evaluation / Interpretation
+  ↓
+KNOWLEDGE
+```
+
+---
+
+## Tahap 1 — Selection
+
+**Selection** adalah memilih data yang relevan dengan tujuan analisis.
+
+Misalnya sekolah memiliki:
+
+```text
+Data siswa
+Data kehadiran
+Data nilai
+Data perpustakaan
+Data ekstrakurikuler
+Data LMS
+Data fasilitas sekolah
+```
+
+Jika penelitian bertujuan memprediksi kesulitan belajar, tidak semua data harus digunakan.
+
+Peneliti dapat memilih:
+
+```text
+Kehadiran
+Nilai tugas
+Nilai kuis
+Nilai UTS
+Aktivitas LMS
+```
+
+Jadi:
+
+> **Selection menjawab pertanyaan: data mana yang relevan dengan masalah yang ingin kita selesaikan?**
+
+---
+
+## Tahap 2 — Preprocessing
+
+Data dunia nyata sering kali tidak sempurna.
+
+Misalnya:
+
+```text
+Nilai = kosong
+Kehadiran = 105%
+Nama siswa berbeda format
+Data siswa tercatat dua kali
+Nilai ditulis sebagai "80" dan "delapan puluh"
+```
+
+Karena itu, data perlu dibersihkan.
+
+Proses preprocessing dapat mencakup:
+
+* menangani missing value;
+* menghapus duplikasi;
+* memperbaiki kesalahan;
+* menyeragamkan format;
+* menangani data yang tidak konsisten;
+* memeriksa data yang tidak wajar.
+
+Contoh:
+
+```text
+Sebelum:
+
+Siswa A → 90
+Siswa B → kosong
+Siswa C → 85
+Siswa C → 85
+
+Sesudah:
+
+Siswa A → 90
+Siswa B → [ditangani]
+Siswa C → 85
+```
+
+---
+
+## Tahap 3 — Transformation
+
+Setelah data dibersihkan, data dapat ditransformasikan agar sesuai dengan kebutuhan analisis.
+
+Misalnya:
+
+```text
+Kehadiran
+
+95%
+90%
+85%
+70%
+65%
+```
+
+dapat diubah menjadi:
+
+```text
+Tinggi
+Tinggi
+Tinggi
+Sedang
+Rendah
+```
+
+Atau kita dapat membuat variabel baru:
+
+```text
+Rata-rata nilai tugas
+
+Frekuensi akses LMS
+
+Persentase kehadiran
+
+Total aktivitas belajar
+```
+
+Tujuannya adalah membuat data lebih sesuai untuk proses analisis.
+
+---
+
+## Tahap 4 — Data Mining
+
+Pada tahap ini digunakan algoritma untuk menemukan pola dalam data.
+
+Beberapa teknik yang akan dipelajari dalam mata kuliah ini antara lain:
+
+| Teknik            | Tujuan                     | Contoh Pendidikan                   |
+| :---------------- | :------------------------- | :---------------------------------- |
+| Classification    | Memprediksi kelas          | Siswa berisiko/tidak                |
+| Clustering        | Mengelompokkan data        | Kelompok pola belajar               |
+| Association       | Menemukan hubungan         | Pola aktivitas belajar              |
+| Regression        | Memprediksi angka          | Prediksi nilai akhir                |
+| Anomaly Detection | Menemukan pola tidak biasa | Aktivitas belajar yang tidak normal |
+
+---
+
+## Tahap 5 — Evaluation
+
+Tidak semua pola yang ditemukan otomatis berguna.
+
+Misalnya sebuah algoritma menemukan:
+
+> "Siswa yang menggunakan komputer memiliki nilai lebih tinggi."
+
+Apakah penggunaan komputer **menyebabkan** nilai lebih tinggi?
+
+**Belum tentu.**
+
+Mungkin terdapat faktor lain seperti:
+
+* kemampuan awal;
+* motivasi belajar;
+* dukungan orang tua;
+* akses internet;
+* kondisi ekonomi;
+* kualitas pembelajaran;
+* karakteristik guru.
+
+Karena itu, hasil data mining harus dievaluasi.
+
+Pertanyaan yang perlu diajukan:
+
+* Apakah pola tersebut valid?
+* Apakah pola tersebut masuk akal?
+* Apakah pola tersebut relevan?
+* Apakah pola tersebut dapat digunakan dalam konteks pendidikan?
+* Apakah terdapat kemungkinan bias?
+
+---
+
+## Tahap 6 — Knowledge
+
+Tujuan akhir KDD bukan sekadar menghasilkan angka atau model.
+
+Tujuannya adalah menghasilkan **pengetahuan yang bermakna dan dapat digunakan**.
+
+Misalnya:
+
+> Siswa dengan kehadiran di bawah 70% dan rata-rata nilai kuis di bawah 60 cenderung memiliki risiko lebih tinggi mengalami kesulitan pada evaluasi akhir.
+
+Informasi tersebut dapat digunakan untuk:
+
+* memberikan pendampingan;
+* melakukan remedial;
+* melakukan intervensi lebih awal;
+* memantau perkembangan siswa;
+* menyesuaikan strategi pembelajaran.
+
+---
+
+# Learning Analytics
+
+## Apa Itu Learning Analytics?
+
+**Learning Analytics** berfokus pada pengumpulan, pengukuran, analisis, dan interpretasi data mengenai pembelajar dan proses pembelajaran untuk memahami serta meningkatkan pembelajaran.
+
+Secara sederhana:
+
+> **Learning Analytics menggunakan data untuk memahami apa yang terjadi dalam proses belajar dan membantu menentukan tindakan yang tepat.**
+
+Contohnya, sebuah LMS menunjukkan bahwa:
+
+```text
+20 siswa
+↓
+jarang mengakses materi
+↓
+nilai kuis rendah
+↓
+berpotensi mengalami kesulitan
+```
+
+Guru kemudian dapat:
+
+1. memeriksa kondisi siswa;
+2. memberikan bantuan;
+3. memberikan materi tambahan;
+4. melakukan remedial;
+5. memantau perkembangan siswa.
+
+---
+
+# EDM dan Learning Analytics
+
+EDM dan Learning Analytics memiliki hubungan yang sangat dekat.
+
+Keduanya:
+
+* menggunakan data pendidikan;
+* dapat menggunakan teknik statistik;
+* dapat menggunakan machine learning;
+* dapat menggunakan data dari LMS;
+* bertujuan menghasilkan informasi yang berguna untuk pendidikan.
+
+Namun, fokus keduanya dapat dibedakan.
+
+---
+
+# Perbedaan EDM dan Learning Analytics
+
+| Aspek            | Educational Data Mining                       | Learning Analytics                                                  |
+| :--------------- | :-------------------------------------------- | :------------------------------------------------------------------ |
+| Fokus utama      | Menemukan pola dan membangun model            | Memahami dan meningkatkan pembelajaran                              |
+| Orientasi        | Computational / model-driven                  | Decision / action-oriented                                          |
+| Pertanyaan utama | "Pola apa yang terdapat dalam data?"          | "Apa yang terjadi dalam pembelajaran dan apa yang perlu dilakukan?" |
+| Pendekatan       | Data mining dan machine learning              | Statistik, visualisasi, analitik, data mining, dan metode lainnya   |
+| Output           | Model, cluster, aturan, prediksi              | Insight, dashboard, rekomendasi, intervensi                         |
+| Pengguna         | Peneliti, data scientist, pengembang sistem   | Guru, dosen, sekolah, pengelola pendidikan                          |
+| Contoh           | Mengelompokkan siswa berdasarkan pola belajar | Membantu guru memantau siswa yang membutuhkan bantuan               |
+
+> **Perlu diperhatikan bahwa batas antara EDM dan Learning Analytics tidak selalu tegas.**
+
+Learning Analytics dapat menggunakan teknik yang berasal dari EDM.
+
+---
+
+# Analogi: EDM sebagai "Detektif Data"
+
+Salah satu cara mudah untuk memahami EDM adalah dengan membayangkannya sebagai **detektif data**.
+
+Detektif data bertanya:
+
+> **"Pola apa yang tersembunyi dalam data?"**
+
+Misalnya:
+
+> "Ternyata terdapat tiga kelompok siswa berdasarkan pola aktivitas belajarnya."
+
+EDM membantu menemukan pola tersebut.
+
+---
+
+# Analogi: Learning Analytics sebagai "Dokter Pendidikan"
+
+Learning Analytics dapat dianalogikan sebagai **dokter pendidikan**.
+
+Pertanyaannya:
+
+> **"Apa yang sedang terjadi pada proses belajar siswa dan tindakan apa yang sebaiknya dilakukan?"**
+
+Misalnya:
+
+```text
+Data siswa
+    ↓
+Analisis
+    ↓
+10 siswa menunjukkan tanda kesulitan belajar
+    ↓
+Guru melakukan pemeriksaan lebih lanjut
+    ↓
+Intervensi
+    ↓
+Pemantauan
+```
+
+Dengan demikian:
+
+> **EDM membantu menemukan pola, sedangkan Learning Analytics membantu menggunakan data dan insight untuk memahami serta meningkatkan pembelajaran.**
+
+---
+
+# Contoh Kasus: LMS di Sekolah Dasar
+
+Bayangkan sebuah sekolah menggunakan LMS.
+
+Sekolah memiliki data:
+
+```text
+Login
+Durasi belajar
+Jumlah halaman yang dibaca
+Jumlah video ditonton
+Nilai kuis
+Nilai tugas
+Nilai akhir
+```
+
+## Jika menggunakan EDM
+
+Peneliti dapat menggunakan **clustering** untuk menemukan kelompok siswa.
+
+Misalnya:
+
+```text
+Cluster 1
+Pembelajar aktif
+
+Cluster 2
+Pembelajar pasif
+
+Cluster 3
+Pembelajar tidak konsisten
+```
+
+Pertanyaan EDM:
+
+> **"Apakah terdapat pola atau kelompok tertentu dalam perilaku belajar siswa?"**
+
+---
+
+## Jika menggunakan Learning Analytics
+
+Guru menggunakan hasil analisis tersebut untuk:
+
+```text
+Identifikasi siswa
+        ↓
+Memeriksa kondisi siswa
+        ↓
+Memberikan pendampingan
+        ↓
+Memantau perubahan
+```
+
+Pertanyaan Learning Analytics:
+
+> **"Apa yang sedang terjadi pada pembelajaran siswa dan apa yang dapat dilakukan untuk memperbaikinya?"**
+
+---
+
+# Dari Data Menjadi Tindakan
+
+Salah satu konsep penting dalam mata kuliah ini adalah:
+
+```text
+DATA
+↓
+Informasi
+↓
+Pola
+↓
+Pengetahuan
+↓
+Insight
+↓
+Tindakan
+```
+
+Contoh:
+
+```text
+Data
+↓
+Kehadiran, nilai kuis, aktivitas LMS
+↓
+Informasi
+↓
+Sebagian siswa memiliki aktivitas belajar rendah
+↓
+Pola
+↓
+Aktivitas rendah berkaitan dengan hasil belajar rendah
+↓
+Pengetahuan
+↓
+Siswa dengan pola tertentu membutuhkan perhatian
+↓
+Tindakan
+↓
+Intervensi pembelajaran
+```
+
+Tujuan akhir analisis data pendidikan bukan sekadar menghasilkan grafik atau model.
+
+> **Tujuan akhirnya adalah menghasilkan informasi dan pengetahuan yang dapat membantu meningkatkan proses pembelajaran.**
+
+---
+
+# Studi Kasus
+
+## Kasus: Siswa dengan Nilai Matematika Rendah
+
+Sebuah sekolah dasar ingin mengetahui mengapa sebagian siswa memperoleh nilai matematika rendah.
+
+Sekolah memiliki data:
+
+* nilai matematika;
+* kehadiran;
+* jumlah tugas yang dikumpulkan;
+* nilai kuis;
+* frekuensi penggunaan media pembelajaran digital.
+
+### Pertanyaan
+
+**1.** Data apa saja yang tersedia?
+
+**2.** Variabel apa yang dapat digunakan?
+
+**3.** Pola apa yang mungkin dicari?
+
+**4.** Apakah masalah tersebut dapat dianalisis menggunakan EDM?
+
+**5.** Apakah Learning Analytics juga dapat digunakan?
+
+**6.** Teknik data mining apa yang mungkin digunakan?
+
+**7.** Tindakan apa yang dapat dilakukan guru berdasarkan hasil analisis?
+
+---
+
+# Aktivitas Kelompok
+
+Bentuk kelompok kecil.
+
+Setiap kelompok memilih **satu masalah pendidikan** berikut:
+
+1. siswa sering tidak mengerjakan tugas;
+2. siswa memperoleh nilai matematika rendah;
+3. siswa jarang membaca materi;
+4. siswa memiliki kehadiran rendah;
+5. siswa kurang aktif dalam pembelajaran digital.
+
+Kemudian lengkapi tabel berikut.
+
+| Komponen                                  | Jawaban Kelompok |
+| :---------------------------------------- | :--------------- |
+| Masalah pendidikan                        |                  |
+| Data yang diperlukan                      |                  |
+| Variabel yang tersedia                    |                  |
+| Pola yang ingin ditemukan                 |                  |
+| Teknik data mining yang mungkin digunakan |                  |
+| Insight yang diharapkan                   |                  |
+| Tindakan yang mungkin dilakukan guru      |                  |
+
+### Pertanyaan tambahan
+
+> Apakah kelompok Anda lebih tepat menggunakan **EDM**, **Learning Analytics**, atau **keduanya**?
+
+Jelaskan alasannya.
+
+---
+
+# Latihan: EDM atau Learning Analytics?
+
+Tentukan apakah setiap aktivitas berikut lebih dekat dengan **EDM**, **Learning Analytics**, atau **keduanya**.
+
+| Aktivitas                                          | EDM | Learning Analytics | Keduanya |
+| :------------------------------------------------- | :-: | :----------------: | :------: |
+| Mengelompokkan siswa berdasarkan pola belajar      |     |                    |          |
+| Membuat dashboard perkembangan siswa               |     |                    |          |
+| Memprediksi siswa yang berisiko gagal              |     |                    |          |
+| Menemukan pola hubungan antara kehadiran dan nilai |     |                    |          |
+| Memberikan rekomendasi intervensi kepada guru      |     |                    |          |
+| Memantau perkembangan siswa dari waktu ke waktu    |     |                    |          |
+
+### Diskusikan
+
+Tidak semua jawaban harus mutlak.
+
+Jelaskan **mengapa** suatu aktivitas dapat masuk ke EDM, Learning Analytics, atau keduanya.
+
+---
+
+# Pertanyaan Refleksi
+
+Bayangkan Anda menjadi guru kelas V MI.
+
+Anda memiliki data seluruh siswa selama satu semester.
+
+> **Pertanyaan apa yang ingin Anda jawab menggunakan data tersebut?**
+
+Tuliskan minimal **tiga pertanyaan**.
+
+Contoh:
+
+* Apakah kehadiran berkaitan dengan hasil belajar?
+* Siswa mana yang membutuhkan pendampingan?
+* Apakah terdapat kelompok siswa dengan pola belajar yang sama?
+* Apakah aktivitas digital berkaitan dengan hasil belajar?
+
+---
+
+<!-- # Konsep yang Harus Diingat -->
+
+<!-- Pada akhir pertemuan, mahasiswa diharapkan memahami lima konsep utama. -->
+
+<!-- ## Data Mining -->
+
+<!-- Proses menemukan pola atau informasi berguna dari data. -->
+
+<!-- ## Educational Data Mining -->
+
+<!-- Penerapan teknik data mining pada data pendidikan. -->
+
+<!-- ## 3. KDD -->
+
+<!-- Proses menemukan pengetahuan dari data melalui tahapan: -->
+
+<!-- **Selection → Preprocessing → Transformation → Data Mining → Evaluation → Knowledge** -->
+
+<!-- ## 4. Learning Analytics -->
+
+<!-- Penggunaan data dan analitik untuk memahami serta meningkatkan proses pembelajaran. -->
+
+<!-- ## 5. EDM dan Learning Analytics Beririsan -->
+
+<!-- Perbedaan sederhana: -->
+
+<!-- > **EDM lebih berorientasi pada penemuan pola dan model dari data, sedangkan Learning Analytics lebih berorientasi pada pemahaman proses pembelajaran dan penggunaan insight untuk tindakan.** -->
+
+<!-- --- -->
+
+# Exit Ticket
+
+Sebelum meninggalkan kelas, jawab tiga pertanyaan berikut secara singkat.
+
+### Pertanyaan 1
+
+Apa yang dimaksud dengan **Educational Data Mining (EDM)**?
+
+### Pertanyaan 2
+
+Mengapa **data mining hanya merupakan salah satu tahap dalam KDD**?
+
+### Pertanyaan 3
+
+Jelaskan perbedaan EDM dan Learning Analytics menggunakan **satu contoh kasus pendidikan**.
+
+---
+
+# Rangkuman
+
+Alur konsep yang perlu dipahami:
+
+```text
+Data Pendidikan
+       ↓
+   Data Mining
+       ↓
+      KDD
+       ↓
+      EDM
+       ↓
+Learning Analytics
+       ↓
+Pola & Insight
+       ↓
+Pemahaman Pembelajaran
+       ↓
+Tindakan / Intervensi
+```
+
+Data pendidikan dapat menjadi sangat bernilai ketika tidak hanya dikumpulkan, tetapi **dianalisis untuk menemukan pola, menghasilkan pengetahuan, dan mendukung pengambilan keputusan dalam pembelajaran**.
+
+Pada pertemuan berikutnya, kita akan mulai masuk ke **data dan karakteristiknya dalam proses data mining**, termasuk bagaimana data direpresentasikan dan dipersiapkan sebelum dianalisis.
